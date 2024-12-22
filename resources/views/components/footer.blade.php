@@ -51,3 +51,88 @@
         </div>
     </div>
 </footer>
+
+<style>
+    
+    .chat-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #454545;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+    .chat-icon
+    {
+        font-size: 25px;
+    }
+
+    .chat-popup {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 300px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: none;
+        z-index: 1000;
+    }
+
+    .chat-popup-header {
+        background-color: #454545;
+        color: #fff;
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        text-align: center;
+    }
+
+    .chat-popup-body {
+        padding: 10px;
+        overflow-y: auto;
+    }
+
+    .chat-popup-footer {
+        padding: 10px;
+        border-top: 1px solid #ccc;
+    }
+</style>
+
+<div class="chat-icon" id="chatIcon">
+    <i class="fa fa-comment"></i>
+</div>
+
+<!-- Chat Popup -->
+<div class="chat-popup" id="chatPopup">
+    <div class="chat-popup-header">
+        <strong>Support Chat</strong>
+    </div>
+    <div class="chat-popup-body">
+        <iframe 
+            src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/12/22/12/20241222124346-ROHOUB5G.json" 
+            allow="microphone; autoplay" 
+            frameborder="0" 
+            style="border: none; width: 100%; height: 350px;">
+        </iframe>
+    </div>
+</div>
+
+<script>
+    const chatIcon = document.getElementById('chatIcon');
+    const chatPopup = document.getElementById('chatPopup');
+
+    chatIcon.addEventListener('click', () => {
+        chatPopup.style.display = chatPopup.style.display === 'block' ? 'none' : 'block';
+    });
+
+</script>
