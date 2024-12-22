@@ -25,7 +25,7 @@ class DashboardController extends Controller
     {
         $title = str_replace(' ', '-', $title);
 
-        $product = Product::with('category')
+        $product = Product::with('category','colors','storageCapacities')
         ->where('id', $id)
         ->whereRaw('LOWER(REPLACE(title, " ", "-")) LIKE ?', [strtolower('%' . $title . '%')])
         ->first();                 

@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\Product;
+use Livewire\Component;
 use App\Models\ProductColor;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ProductStorageCapacity;
 
 class CartComponent extends Component
 {
@@ -22,6 +23,8 @@ class CartComponent extends Component
     public $product;
     public $relatedProducts;
 
+    public $capacity, $selectCapacity, $selectColor, $isCart=false;
+
     protected $listeners = ['updateCart'];
 
     public function mount($product, $relatedProducts)
@@ -29,6 +32,21 @@ class CartComponent extends Component
         $this->product = $product;
         $this->relatedProducts = $relatedProducts;
         $this->productStock = $product->stock;
+
+        $cart = Cart::where(['product_id'=> $this->product->id,'user_id'=>Auth::user()->id])->first();
+        if($cart)
+        {
+            $this->qty = $cart->qty;
+
+            $this->isCart=true;
+        }
+        $this->updatedPrice();
+    }
+
+    public function changeCapacity($id)
+    {
+        $this->capacity = ProductStorageCapacity::find($id);
+        $this->updatedPrice();
     }
 
     public function addToCart()
@@ -39,23 +57,13 @@ class CartComponent extends Component
             return;
         }
 
-        // Example of adding to a session-based cart
-        // $cart = session()->get('cart', []);
-
-        // $cart[$this->product->id] = [
-        //     'id' => $this->product->id,
-        //     'title' => $this->product->title,
-        //     'price' => $this->product->price,
-        //     'quantity' => $this->qty,
-        // ];
-
         $cart = Cart::where('product_id', $this->product->id)
             ->where('user_id', Auth::user()->id)
             ->firstOrNew();
 
-
-
-        $cart->qty = $cart->exists ? $cart->qty + $this->qty : $this->qty;
+        $cart->qty = $this->qty;
+        $cart->size = $this->selectedCapacity;
+        $cart->color = $this->selectedColor;
         $cart->product_id = $this->product->id;
         $cart->user_id = Auth::user()->id;
         $cart->save();
@@ -64,6 +72,25 @@ class CartComponent extends Component
 
         $this->emit('cartUpdated');
         session()->flash('success', 'Product added to cart!');
+    }
+
+    public function updatedQty()
+    {
+        $this->updatedPrice();
+    }
+
+    public function updatedPrice()
+    {
+        if($this->capacity)
+        {
+            $this->price = $this->capacity->price;
+        }
+        else
+        {
+            $this->price = $this->product->price;
+        }
+
+        $this->price = $this->price*$this->qty;
     }
 
     public function render()

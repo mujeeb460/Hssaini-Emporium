@@ -27,7 +27,38 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        <div class="product__details__price">RS {{ $product->price }}</div>
+                        @if ($product->colors)
+                            <div class="product_colors mt-4">
+                                <h5>Choose a Color:</h5>
+                                <div class="color-options d-flex gap-2">
+                                    @foreach ($product->colors as $color)
+                                        <label class="color-label">
+                                            <input type="radio" name="color" wire:model="selectColor" value="{{ $color->color_name }}" hidden>
+                                            <span class="color-name" style="background-color: {{ $color->color_code }};">{{ $color->color_name }}</span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($product->storageCapacities)
+                            <div class="product_capacity mt-4">
+                                <h5>Choose Capacity:</h5>
+                                <div class="capacity-options d-flex gap-2">
+                                    @foreach ($product->storageCapacities as $capacity)
+                                        <label class="capacity-label">
+                                            <input type="radio" name="selectCapacity" wire:click='changeCapacity({{ $capacity->id }})' value="{{ $capacity->capacity }}" hidden>
+                                            <span class="capacity-name">{{ $capacity->capacity }}</span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="product__details__price">
+                            RS {{ $price }}
+                            <input type="hidden" wire:model="price">
+                        </div>
                         <p>{!! $product->description !!}</p>
 
                         <form wire:submit.prevent="addToCart">
@@ -38,7 +69,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn primary-btn">ADD TO CART</button>
+                            <button class="btn primary-btn">{{ $isCart? 'UPDATE TO CART':'ADD TO CART' }}</button>
                                                 {{-- <a href="#" class="primary-btn">ADD TO CARD</a> --}}
                                                 {{-- <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a> --}}
                             @if (session()->has('success'))
@@ -157,6 +188,72 @@
         </div>
     </section>
 </div>
+
+<style>
+h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Color section */
+.color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Colors section */
+.color-label {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-label:hover {
+    background-color: #f7f7f7;
+}
+
+.color-label input:checked + .color-name {
+    color: blue;
+    font-weight: bold;
+}
+
+
+/* Capacity section */
+.capacity-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.capacity-label {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.capacity-label:hover {
+    background-color: #f7f7f7;
+}
+
+.capacity-label input:checked + .capacity-name {
+    /* background-color: #333; */
+    color: blue;
+}
+</style>
 
 <script>
     // Listen for the Livewire event to refresh the cart
