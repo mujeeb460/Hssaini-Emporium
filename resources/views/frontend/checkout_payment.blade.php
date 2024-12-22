@@ -7,10 +7,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Shopping Cart</h2>
+                        <h2>Payment</h2>
                         <div class="breadcrumb__option">
                             <a href="/">Home</a>
-                            <span>Shopping Cart</span>
+                            <span>Stripe Payment</span>
                         </div>
                     </div>
                 </div>
@@ -26,100 +26,65 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th class="shoping__product">Products</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
+                            
                             <tbody>
                                 <?php
                                 $total = 0;
                                 ?>
                                 @foreach ($carts as $cart)
                                     <?php $total += $cart->product->price * $cart->qty; ?>
-                                    <tr>
-                                        <td class="shoping__cart__item">
-                                            <img src="{{ asset('storage/uploads/' . $cart->product->thumbnail) }}"
-                                                alt="" height="100">
-                                            <h5>{{ $cart->product->title }}</h5>
-                                        </td>
-                                        <td class="shoping__cart__price">
-                                            RS {{ $cart->product->price }}
-                                        </td>
-                                        <input type="hidden" name="id[]" value="{{ $cart->id }}" class="id">
-                                        <td class="shoping__cart__quantity">
-                                            <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <input type="text" class="qty" min="1"
-                                                        max="{{ $cart->product->stock }}" value="{{ $cart->qty }}">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="shoping__cart__total">
-                                            RS {{ $cart->product->price * $cart->qty }}
-                                        </td>
-                                        <td class="shoping__cart__item__close">
-                                            <span class="icon_close" data-cartid="{{ $cart->id }}"></span>
-                                        </td>
-                                    </tr>
+                                   
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <form action="{{ Route('order.store') }}" method="post">
+            <form role="form" 
+
+                            action="{{ route('stripe') }}" 
+
+                            method="post" 
+
+                            class="require-validation"
+
+                            data-cc-on-file="false"
+
+                            data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
+
+                            id="payment-form">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="shoping__cart__btns">
-                            <a href="/" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                            {{-- <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Upadate Cart</a> --}}
-                        </div>
+                       <h3 style="text-align: center;">Payment Details</h3>
                     </div>
                     <div class="col-lg-6">
-                        <div class="shoping__continue">
-                            {{-- <div class="shoping__discount">
-                            <h5>Discount Codes</h5>
-                            <form action="#">
-                                <input type="text" placeholder="Enter your coupon code">
-                                <button type="submit" class="site-btn">APPLY COUPON</button>
-                            </form>
-                        </div> --}}
-                        </div>
-                        <br>
+                        
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" value="{{ auth()->user()->first_name ?? '' }}" class="form-control"
+                            <label>Name on Card</label>
+                            <input type="text" name="name" value="{{ auth()->user()->name ?? '' }}" class="form-control"
                                 required>
                         </div>
                         <div class="form-group">
-                            <label>Contact No</label>
-                            <input type="text" name="phone" value="{{ auth()->user()->mobile ?? '' }}" class="form-control" required>
+                            <label>Card No</label>
+                            <input type="text" name="phone" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" name="address" value="{{ auth()->user()->address ?? '' }}" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>City</label>
-                            <input type="text" name="city" value="{{ auth()->user()->city ?? '' }}" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="payment_method" id="cod" value="cod" checked=""> <img width="30" src="{{asset('frontend/img/money.png')}}" for="cod"/>
-                              <label class="form-check-label" for="cod"> Cash on Delivery</label>
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>CVC</label>
+                                <input type="text" name="address" placeholder="ex. 311" class="form-control" required>
                             </div>
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="payment_method" id="stripe" value="stripe"><img width="30" src="{{asset('frontend/img/stripe.png')}}" for="stripe" />
-                              <label class="form-check-label" for="stripe">Stripe</label>
+                            <div class="col-lg-4">
+                                <label>Expiration Month</label>
+                                <input type="text" name="address" placeholder="MM" class="form-control" required>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Expiration Year</label>
+                                <input type="text" name="address" placeholder="YYYY" class="form-control" required>
                             </div>
                         </div>
+
+                        <input type="hidden" name="payment_method" value="stripePay">
                     </div>
                     <div class="col-lg-6">
                         <div class="shoping__checkout">
@@ -128,7 +93,7 @@
                                 <li>Subtotal <span>RS {{ $total }}</span></li>
                                 <li>Total <span>RS {{ $total }}</span></li>
                             </ul>
-                            <button class="btn primary-btn w-100">PLACE ORDER</button>
+                            
                             {{-- <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a> --}}
                         </div>
 
@@ -151,12 +116,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn primary-btn w-100">PAY NOW</button>
+                        
+                    </div>
                 </div>
         </div>
     </section>
     <!-- Shoping Cart Section End -->
 @endsection
 @section('script')
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script>
         $(document).ready(function() {
             $(".pro-qty").on('click', '.qtybtn', function() {
@@ -208,5 +179,137 @@
                 });
             });
         });
+
+        $(function() {
+
+  
+
+    /*------------------------------------------
+
+    --------------------------------------------
+
+    Stripe Payment Code
+
+    --------------------------------------------
+
+    --------------------------------------------*/
+
+    
+
+    var $form = $(".require-validation");
+
+     
+
+    $('form.require-validation').bind('submit', function(e) {
+
+        var $form = $(".require-validation"),
+
+        inputSelector = ['input[type=email]', 'input[type=password]',
+
+                         'input[type=text]', 'input[type=file]',
+
+                         'textarea'].join(', '),
+
+        $inputs = $form.find('.required').find(inputSelector),
+
+        $errorMessage = $form.find('div.error'),
+
+        valid = true;
+
+        $errorMessage.addClass('hide');
+
+    
+
+        $('.has-error').removeClass('has-error');
+
+        $inputs.each(function(i, el) {
+
+          var $input = $(el);
+
+          if ($input.val() === '') {
+
+            $input.parent().addClass('has-error');
+
+            $errorMessage.removeClass('hide');
+
+            e.preventDefault();
+
+          }
+
+        });
+
+     
+
+        if (!$form.data('cc-on-file')) {
+
+          e.preventDefault();
+
+          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+
+          Stripe.createToken({
+
+            number: $('.card-number').val(),
+
+            cvc: $('.card-cvc').val(),
+
+            exp_month: $('.card-expiry-month').val(),
+
+            exp_year: $('.card-expiry-year').val()
+
+          }, stripeResponseHandler);
+
+        }
+
+    
+
+    });
+
+      
+
+    /*------------------------------------------
+
+    --------------------------------------------
+
+    Stripe Response Handler
+
+    --------------------------------------------
+
+    --------------------------------------------*/
+
+    function stripeResponseHandler(status, response) {
+
+        if (response.error) {
+
+            $('.error')
+
+                .removeClass('hide')
+
+                .find('.alert')
+
+                .text(response.error.message);
+
+        } else {
+
+            /* token contains id, last4, and card type */
+
+            var token = response['id'];
+
+                 
+
+            $form.find('input[type=text]').empty();
+
+            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+
+            $form.get(0).submit();
+
+        }
+
+    }
+
+     
+
+});
+
+
     </script>
 @endsection

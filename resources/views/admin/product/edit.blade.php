@@ -56,18 +56,15 @@
 
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <strong>Category:</strong>
-                                        {!! Form::select('category_id', $category, null, ['placeholder' => 'Select', 'class' => 'form-control']) !!}
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
                                         <strong>Price:</strong>
                                         {!! Form::number('price', null, ['placeholder' => 'Price', 'class' => 'form-control']) !!}
                                     </div>
                                 </div>
+                            </div>
 
+                                <livewire:manage-category />
+
+                            <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <strong>MRP:</strong>
@@ -105,6 +102,41 @@
                                         ]) !!}
                                     </div>
                                 </div>
+
+                                 <!-- Colors -->
+                        <div class="form-group">
+                            <label for="colors"><strong>Colors</strong></label>
+                            <div id="color-fields">
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <input type="text" name="colors[0][name]" class="form-control" placeholder="Color Name">
+                                    </div>
+                                    <div class="col">
+                                        <input type="file" name="colors[0][image]" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm mt-2" onclick="addColorField()">Add Color</button>
+                        </div>
+
+                        <!-- Storage Capacities -->
+                        <div class="form-group">
+                            <label for="storage_capacity"><strong>Storage Capacities</strong></label>
+                            <div id="storage-capacity-fields">
+                                <input type="text" name="storage_capacity[]" class="form-control mb-2" placeholder="e.g., 64GB">
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="addStorageField()">Add Capacity</button>
+                        </div>
+
+                        <!-- Capacity Prices -->
+                        <div class="form-group">
+                            <label for="capacity_prices"><strong>Capacity Prices</strong></label>
+                            <div id="capacity-price-fields">
+                                <input type="text" name="capacity_prices[]" class="form-control mb-2" placeholder="Price for 64GB">
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="addCapacityPriceField()">Add Price</button>
+                        </div>
+
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
@@ -151,5 +183,30 @@
                     focus: !1
                 });
             });
+
+            function addColorField() {
+        const colorFields = document.getElementById('color-fields');
+        const index = colorFields.children.length;
+        const newRow = `
+            <div class="row mb-2">
+                <div class="col">
+                    <input type="text" name="colors[${index}][name]" class="form-control" placeholder="Color Name">
+                </div>
+                <div class="col">
+                    <input type="file" name="colors[${index}][image]" class="form-control">
+                </div>
+            </div>`;
+        colorFields.insertAdjacentHTML('beforeend', newRow);
+    }
+
+    function addStorageField() {
+        const field = `<input type="text" name="storage_capacity[]" class="form-control mb-2" placeholder="e.g., 128GB">`;
+        document.getElementById('storage-capacity-fields').insertAdjacentHTML('beforeend', field);
+    }
+
+    function addCapacityPriceField() {
+        const priceField = `<input type="text" name="capacity_prices[]" class="form-control mb-2" placeholder="Price for 128GB">`;
+        document.getElementById('capacity-price-fields').insertAdjacentHTML('beforeend', priceField);
+    }
         </script>
     @endsection

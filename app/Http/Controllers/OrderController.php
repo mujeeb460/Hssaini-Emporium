@@ -117,7 +117,7 @@ class OrderController extends Controller
     public function delivered_orders()
     {
         $orders = Order::where('status','Delivered')->with('orderDetails')->orderby('id', 'DESC')->get();
-        return view('admin.order.delivered_orders', compact('orders'));
+        return view('admin.order.deliverd_orders', compact('orders'));
     }
 
     public function canceled_orders()

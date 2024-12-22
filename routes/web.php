@@ -20,6 +20,9 @@ use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\Frontend\MyAddressController as FrontendMyAddressController;
+use App\Http\Controllers\Frontend\StripePaymentController;
+
+
 
 
 
@@ -80,6 +83,7 @@ Route::get('/addcart/{id?}/{title?}', [FrontendCartController::class, 'addCart']
 Route::get('/contactus', [FrontendDashboardController::class, 'contact'])->name('contactus');
 Route::resource('/contact', FrontendContactController::class);
 Route::resource('/order', FrontendOrderController::class);
+Route::post('/stripe', [StripePaymentController::class, 'stripePost'])->name('stripe');
 Route::get('/myorder', [FrontendUserController::class, 'myorder'])->name('myorder');
 
 

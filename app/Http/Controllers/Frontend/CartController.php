@@ -113,4 +113,7 @@ class CartController extends Controller
     {
         return Redirect()->route('product', [$id , $title]);
     }
+
+
+    
 }

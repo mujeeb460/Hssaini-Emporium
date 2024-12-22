@@ -11,10 +11,8 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
-    <!-- C3 Chart css -->
     <link href="{{ asset('assets/libs/c3/c3.min.css') }}" rel="stylesheet" type="text/css" />
 
-    <!-- App css -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"
         id="bootstrap-stylesheet" />
     <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css" />
@@ -22,8 +20,8 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-stylesheet" />
     <link href="{{ asset('assets/libs/jquery-toast/jquery.toast.min.css') }}" rel="stylesheet" type="text/css" />
 
-    <!-- Sweet Alert -->
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+
     @livewireStyles
     @yield('style')
     <style>
@@ -314,7 +312,45 @@
                             </a>
                         </li>
 
-                        <li class="menu-item">
+                        <li>
+                            <a href="{{ Route('admin.order.index') }}" wire:loading.attr="disabled">
+                                <i class="fe-airplay"></i>
+                                <span>All Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Route('admin.pendingOrders') }}" wire:loading.attr="disabled">
+                                <i class="fe-airplay"></i>
+                                <span>Pending Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Route('admin.processingOrders') }}" wire:loading.attr="disabled">
+                                <i class="fe-airplay"></i>
+                                <span>Processing Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Route('admin.shippedOrders') }}" wire:loading.attr="disabled">
+                                <i class="fe-airplay"></i>
+                                <span>Shipped Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Route('admin.deliveredOrders') }}" wire:loading.attr="disabled">
+                                <i class="fe-airplay"></i>
+                                <span>Delivered Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Route('admin.canceledOrders') }}" wire:loading.attr="disabled">
+                                <i class="fe-airplay"></i>
+                                <span>Canceled Orders</span>
+                            </a>
+                        </li>
+
+
+                        <!-- <li class="menu-item">
                             <a href="javascript:void(0);" class="menu-link">
                                 <i class="fe-airplay"></i>
                                 <span>Orders</span>
@@ -328,9 +364,9 @@
                                 <li><a href="{{ Route('admin.deliveredOrders') }}">
                                 Delivered Orders</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
-                        <li class="menu-item">
+                        <!-- <li class="menu-item">
                             <a href="javascript:void(0);" class="menu-link">
                                 <i class="fe-airplay"></i>
                                 <span>Reports</span>
@@ -344,7 +380,7 @@
                                 <li><a href="{{ Route('admin.deliveredOrders') }}">
                                 Delivered Orders</a></li>
                             </ul>
-                        </li>
+                        </li> -->
 
                         <li>
                             <a href="{{ Route('admin.customer.index') }}" wire:loading.attr="disabled">

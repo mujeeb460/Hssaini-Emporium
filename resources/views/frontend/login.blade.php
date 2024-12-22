@@ -44,11 +44,11 @@
                         <input type="password" name="password" placeholder="Your password" required>
                     </div>
                     <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3 text-center">
-                            <button type="submit" class="site-btn mr-2"><a href="{{ url('/login/google') }}" class="btn-show"><img src="{{ asset('images/google-icon.svg') }}" alt=""> GOOGLE</a></button>
-                            <button type="submit" class="site-btn">LOGIN</button>
-                            <button type="submit" class="site-btn ml-2"><a href="{{ url('/login/facebook') }}" class="btn-show"><img src="{{ asset('images/facebook.svg') }}" alt=""> FACEBOOK</a></button>
+                            <a href="{{ url('/login/google') }}" class="btn btn-outline-dark mr-3"><img src="{{ asset('images/google-icon.svg') }}" alt=""> GOOGLE</a>
+                            <button type="submit" class="btn btn-outline-dark mr-3">LOGIN</button>
+                            <a href="{{ url('/login/facebook') }}" class="btn btn-outline-dark"><img src="{{ asset('images/facebook.svg') }}" alt=""> FACEBOOK</a>
                         <div class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}" class="btn btn-outline-dark mt-2 mr-2">Register</a>
                         </div>
                     </div>
                 </div>

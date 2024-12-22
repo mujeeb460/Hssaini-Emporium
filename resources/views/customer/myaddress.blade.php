@@ -30,7 +30,7 @@
                     <h4 style="text-align: center;">My Address Book</h4>
                     <section class="container my-4">
                         <div style="text-align: right; margin-bottom: 10px;">
-                            <button type="submit" class="site-btn" data-bs-toggle="modal"><a href="{{route('customer.myaddress.create')}}"> ADD</a></button>
+                            <button type="submit" class="btn btn-outline-dark"data-bs-toggle="modal"><a href="{{route('customer.myaddress.create')}}"> ADD</a></button>
                         </div>
 
                         @forelse ($addresses as $address)

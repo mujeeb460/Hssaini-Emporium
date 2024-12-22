@@ -15,11 +15,11 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Category</a></li>
-                                    <li class="breadcrumb-item active">Create Category</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Child Category</a></li>
+                                    <li class="breadcrumb-item active">Edit Child Category</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Create Category</h4>
+                            <h4 class="page-title">Edit Child Category</h4>
                         </div>
                     </div>
                 </div>
@@ -41,9 +41,9 @@
                                 </div>
                             @endif
 
-                            {!! Form::model($category, [
+                            {!! Form::model($childcategory, [
                                 'method' => 'PATCH',
-                                'route' => ['admin.category.update', $category->id],
+                                'route' => ['admin.child_category.update', $childcategory->id],
                                 'files' => true,
                             ]) !!}
                             <div class="row">
