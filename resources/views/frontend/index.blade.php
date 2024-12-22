@@ -95,7 +95,7 @@
 }
 
 .detail .btn-shop:hover {
-    background: #e65b50; /* Darker hover background for the button */
+    background: ##343a40; /* Darker hover background for the button */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
@@ -170,7 +170,7 @@
 }
 
 .products .btn-shop:hover {
-    background: #7fad39; /* Darker hover effect for the button */
+    background: ##343a40; /* Darker hover effect for the button */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 

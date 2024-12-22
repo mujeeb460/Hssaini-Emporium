@@ -59,9 +59,9 @@
                         <input type="password" name="password_confirmation" placeholder="Confirmation password">
                     </div>
                     <div class="col-lg-12 text-center">
-                        <button type="submit" class="site-btn">REGISTER</button>
+                        <button type="submit" class="btn btn-outline-dark">REGISTER</button>
                         <div class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="btn btn-outline-dark mt-2" href="{{ route('login') }}">Login</a>
                         </div>
                     </div>
                 </div>

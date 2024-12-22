@@ -26,9 +26,9 @@
                 </div>
                 <!-- end page title -->
 
-                <a href="{{ route('admin.customer.create') }}" class="btn btn-success mb-2">
+               <!--  <a href="{{ route('admin.customer.create') }}" class="btn btn-success mb-2">
                     <i class="fa fa-plus"></i> Add Customer
-                </a>
+                </a> -->
 
                 <div class="row">
                     <div class="col-12">
@@ -50,7 +50,7 @@
                                     @foreach ($customers as $key => $customer)
                                         <tr>
                                             <td>{{ $customer->id }}</td>
-                                            <td>{{ $customer->name }}</td>
+                                            <td>{{ $customer->first_name }}</td>
                                             <td>{{ $customer->email }}</td>
                                             <td>
                                                 @if (!empty($customer->getRoleNames()))
@@ -61,16 +61,16 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-success btn-xs"
-                                                    href="{{ route('admin.customer.show', $customer->id) }}">
+                                                    href="{{ route('admin.users.show', $customer->id) }}">
                                                     <i class="fas fa-check-square"></i>
                                                 </a>
                                                 <a class="btn btn-warning btn-xs"
-                                                    href="{{ route('admin.customer.edit', $customer->id) }}">
+                                                    href="{{ route('admin.users.edit', $customer->id) }}">
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
-                                                    'route' => ['admin.customer.destroy', $customer->id],
+                                                    'route' => ['admin.users.destroy', $customer->id],
                                                     'style' => 'display:inline',
                                                 ]) !!}
                                                 {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs']) !!}
@@ -93,32 +93,32 @@
     @endsection
 
     @section('style')
-        <!-- third party css -->
-        <link href="assets/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+         <!-- third party css -->
+        <link href="{{asset('assets/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('assets/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('assets/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     @endsection
 
     @section('script')
 
-        <!-- Required datatable js -->
-        <script src="assets/libs/datatables/jquery.dataTables.min.js"></script>
-        <script src="assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+        <script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables/dataTables.bootstrap4.min.js')}}"></script>
         <!-- Buttons examples -->
-        <script src="assets/libs/datatables/dataTables.buttons.min.js"></script>
-        <script src="assets/libs/datatables/buttons.bootstrap4.min.js"></script>
-        <script src="assets/libs/jszip/jszip.min.js"></script>
-        <script src="assets/libs/pdfmake/pdfmake.min.js"></script>
-        <script src="assets/libs/pdfmake/vfs_fonts.js"></script>
-        <script src="assets/libs/datatables/buttons.html5.min.js"></script>
-        <script src="assets/libs/datatables/buttons.print.min.js"></script>
-        <script src="assets/libs/datatables/buttons.colVis.js"></script>
+        <script src="{{asset('assets/libs/datatables/dataTables.buttons.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables/buttons.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('assets/libs/jszip/jszip.min.js')}}"></script>
+        <script src="{{asset('assets/libs/pdfmake/pdfmake.min.js')}}"></script>
+        <script src="{{asset('assets/libs/pdfmake/vfs_fonts.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables/buttons.html5.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables/buttons.print.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables/buttons.colVis.js')}}"></script>
 
         <!-- Responsive examples -->
-        <script src="assets/libs/datatables/dataTables.responsive.min.js"></script>
-        <script src="assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+        <script src="{{asset('assets/libs/datatables/dataTables.responsive.min.js')}}"></script>
+        <script src="{{asset('assets/libs/datatables/responsive.bootstrap4.min.js')}}"></script>
 
         <!-- Datatables init -->
-        <script src="assets/js/pages/datatables.init.js"></script>
+        <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
+
 
     @endsection

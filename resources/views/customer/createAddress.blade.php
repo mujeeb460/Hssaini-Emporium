@@ -103,7 +103,7 @@
                                         </div>
                                       </div>
                                       <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3 text-center">
-                                        <button type="submit" class="site-btn">Add</button>
+                                        <button type="submit" class="btn btn-outline-dark">Add</button>
                                       </div>
                                   </div>
                               </div>

@@ -45,7 +45,7 @@ class OrderController extends Controller
             "phone" => "required",
             "address" => "required",
             "city" => "required",
-            "method" => "required"
+            "payment_method" => "required"
         ]);
 
         $carts = Cart::where('user_id', auth()->id())->get();
@@ -54,29 +54,41 @@ class OrderController extends Controller
             return redirect()->back()->with('success', 'Cart is empty!');
         }
 
-        $order = new Order;
-        $order->name = $request->name;
-        $order->phone = $request->phone;
-        $order->address = $request->address;
-        $order->city = $request->city;
-        $order->method = $request->method;
-        $order->user_id = auth()->id();
-        $order->save();
+        if($request->payment_method == 'stripe')
+        {
+            $data = $request->all(); 
+            $carts = Cart::with('product')->where('user_id', auth()->id())->get();
+            return view('frontend.checkout_payment', compact('carts','data'));
 
-        foreach ($carts as $cart) {
-            $orderDetail = new OrderDetail;
-            $orderDetail->title = $cart->product->title;
-            $orderDetail->price = $cart->product->price;
-            $orderDetail->qty = $cart->qty;
-            $orderDetail->size = $cart->size;
-            $orderDetail->color = $cart->color;
-            $orderDetail->product_id = $cart->product_id;
-            $orderDetail->order_id = $order->id;
-            $orderDetail->save();
+        }elseif($request->payment_method == 'stripePay') {
+            return "ok";
+        
+        }else{
+
+            $order = new Order;
+            $order->name = $request->name;
+            $order->phone = $request->phone;
+            $order->address = $request->address;
+            $order->city = $request->city;
+            $order->method = $request->payment_method;
+            $order->user_id = auth()->id();
+            $order->save();
+
+            foreach ($carts as $cart) {
+                $orderDetail = new OrderDetail;
+                $orderDetail->title = $cart->product->title;
+                $orderDetail->price = $cart->product->price;
+                $orderDetail->qty = $cart->qty;
+                $orderDetail->size = $cart->size;
+                $orderDetail->color = $cart->color;
+                $orderDetail->product_id = $cart->product_id;
+                $orderDetail->order_id = $order->id;
+                $orderDetail->save();
+            }
+
+            Cart::where('user_id', auth()->id())->delete();
+            return redirect('myorder')->with('success', 'Order Placed Successfully!');
         }
-
-        Cart::where('user_id', auth()->id())->delete();
-        return redirect('myorder')->with('success', 'Successfully order completed!');
     }
 
     /**

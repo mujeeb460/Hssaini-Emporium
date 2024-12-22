@@ -91,7 +91,8 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+        return view('admin.sub-category.edit', compact('subcategory'));
     }
 
     /**
@@ -103,7 +104,25 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'status' => 'required'
+        ]);
+
+        $subcategory = Subcategory::find($id);
+
+        if ($request->hasFile('thumbnail')) {
+            //Upload image
+            $thumbnail = $request->file('thumbnail')->store('public/uploads');
+            $thumbnailFileName = basename($thumbnail);
+            $subcategory->thumbnail = $thumbnailFileName;
+        }
+
+        $subcategory->title = $request->title;
+        $subcategory->status = $request->status;
+        $subcategory->update();
+
+        return redirect('admin/sub_category')->with('success', 'Sub Category successfully updated!');
     }
 
     /**

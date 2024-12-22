@@ -93,7 +93,8 @@ class ChildCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $childcategory = Childcategory::find($id);
+        return view('admin.child-category.edit', compact('childcategory'));
     }
 
     /**
@@ -105,7 +106,25 @@ class ChildCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'status' => 'required'
+        ]);
+
+        $childcategory = Childcategory::find($id);
+
+        if ($request->hasFile('thumbnail')) {
+            //Upload image
+            $thumbnail = $request->file('thumbnail')->store('public/uploads');
+            $thumbnailFileName = basename($thumbnail);
+            $childcategory->thumbnail = $thumbnailFileName;
+        }
+
+        $childcategory->title = $request->title;
+        $childcategory->status = $request->status;
+        $childcategory->update();
+
+        return redirect('admin/child_category')->with('success', 'Child Category successfully updated!');
     }
 
     /**
