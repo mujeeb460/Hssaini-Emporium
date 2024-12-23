@@ -23,7 +23,7 @@ class CartComponent extends Component
     public $product;
     public $relatedProducts;
 
-    public $capacity, $selectCapacity, $selectColor, $isCart=false;
+    public $color,$capacity, $selectCapacity, $selectColor, $isCart=false;
 
     protected $listeners = ['updateCart'];
 
@@ -40,6 +40,12 @@ class CartComponent extends Component
 
             $this->isCart=true;
         }
+        $this->updatedPrice();
+    }
+
+    public function changeColor($id)
+    {
+        $this->color = ProductColor::find($id);
         $this->updatedPrice();
     }
 

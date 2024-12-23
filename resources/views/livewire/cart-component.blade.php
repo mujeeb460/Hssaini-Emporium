@@ -2,15 +2,15 @@
     <section class="product-details spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6" wire:ignore.self>
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="{{ asset('storage/uploads/' . $product->thumbnail) }}" alt="">
+                            src="{{ asset('storage/uploads/' . ($color ? $color->color_image : $product->thumbnail)) }}" alt="">
                         </div>
-                        <div class="product__details__pic__slider owl-carousel">
+                        <div wire:ignore.self class="product__details__pic__slider owl-carousel">
                             @foreach (json_decode($product->images) as $image)
-                                <img data-imgbigurl="{{ asset('storage/uploads/' . $image) }}"
+                                <img wire:ignore.self data-imgbigurl="{{ asset('storage/uploads/' . $image) }}"
                                     src="{{ asset('storage/uploads/' . $image) }}" alt="">
                             @endforeach
                         </div>
@@ -33,7 +33,7 @@
                                 <div class="color-options d-flex gap-2">
                                     @foreach ($product->colors as $color)
                                         <label class="color-label">
-                                            <input type="radio" name="color" wire:model="selectColor" value="{{ $color->color_name }}" hidden>
+                                            <input type="radio" name="color" wire:model="selectColor" wire:click='changeColor({{ $color->id }})' value="{{ $color->color_name }}" hidden>
                                             <span class="color-name" style="background-color: {{ $color->color_code }};">{{ $color->color_name }}</span>
                                         </label>
                                     @endforeach
