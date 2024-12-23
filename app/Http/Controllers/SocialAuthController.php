@@ -71,6 +71,8 @@ class SocialAuthController extends Controller
                         'password' => encrypt('123456dummy')
                     ]);
 
+                $newUser->assignRole('Customer');
+
                 Auth::login($newUser);
 
                 return redirect()->intended('dashboard');

@@ -33,7 +33,7 @@ class CartComponent extends Component
         $this->relatedProducts = $relatedProducts;
         $this->productStock = $product->stock;
 
-        $cart = Cart::where(['product_id'=> $this->product->id,'user_id'=>Auth::user()->id])->first();
+        $cart = Cart::where(['product_id'=> $this->product->id])->first();
         if($cart)
         {
             $this->qty = $cart->qty;
