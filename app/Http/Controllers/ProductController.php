@@ -182,7 +182,6 @@ public function store(Request $request)
     public function edit(Product $product)
     {
         $category = Category::pluck('title', 'id');
-        $sub
         return view('admin.product.edit', compact('product', 'category'));
     }
 
