@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Subcategory;
-use App\Models\ChildCategory;
+use App\Models\Childcategory;
 
 class ManageCategory extends Component
 {
@@ -31,7 +31,7 @@ class ManageCategory extends Component
 
     public function updatedSelectedSubcategory($subcategoryId)
     {
-        $this->childCategories = ChildCategory::where('subcategory_id', $subcategoryId)->get();
+        $this->childCategories = Childcategory::where('subcategory_id', $subcategoryId)->get();
         $this->selectedChildCategory = null;
     }
 
