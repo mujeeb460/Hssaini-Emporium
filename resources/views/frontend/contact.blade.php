@@ -34,14 +34,14 @@
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>Address</h4>
-                        <p>Shop 16/17 Underground Quaid e Azam Complex Doctor Line, Hyderabad, Pakistan</p>
+                        <p>Shop 12/A Complex Karachi</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_clock_alt"></span>
                         <h4>Open time</h4>
-                        <p>9:00 am to 23:00 pm</p>
+                        <p>24 Hours</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
@@ -59,7 +59,7 @@
     <!-- Map Begin -->
     <div class="map">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3605.5668193134807!2d68.34419251091047!3d25.3523130253072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sShop%2016%2F17%20Underground%20Quaid%20e%20Azam%20Complex%20Doctor%20Line%2C%20Hyderabad%2C%20Pakistan!5e0!3m2!1sen!2s!4v1703313042116!5m2!1sen!2s"
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3604.4525934205653!2d67.01335351091047!3d24.8607340253072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sShop%2012%2FA%20Complex%20Karachi!5e0!3m2!1sen!2s!4v1703313042116!5m2!1sen!2s"
             height="500" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         <div class="map-inside">
             <i class="icon_pin"></i>
@@ -67,7 +67,7 @@
                 <h4>Ar Skincare</h4>
                 <ul>
                     <li>Phone: +92 333 6857367</li>
-                    <li>Add: Shop 16/17 Underground Quaid e Azam Complex Doctor Line, Hyderabad, Pakistan</li>
+                    <li>Add: Shop 12/A Complex Karachi</li>
                 </ul>
             </div>
         </div>
