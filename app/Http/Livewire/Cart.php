@@ -11,7 +11,7 @@ class Cart extends Component
     public $totalPrice = 0;
 
     // Listens for cart updates triggered elsewhere
-    protected $listeners = ['updateCart'];
+    protected $listeners = ['cartUpdated'];
 
     public function mount()
     {
@@ -34,6 +34,11 @@ class Cart extends Component
             $this->cartCount = 0;
             $this->totalPrice = 0;
         }
+    }
+
+    public function cartUpdated()
+    {
+        $this->updateCart();
     }
 
     public function render()
