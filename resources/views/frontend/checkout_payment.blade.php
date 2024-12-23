@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
                         <table>
-                            
+                
                             <tbody>
                                 <?php
                                 $total = 0;
@@ -41,50 +41,40 @@
                 </div>
             </div>
             <form role="form" 
-
-                            action="{{ route('stripe') }}" 
-
-                            method="post" 
-
-                            class="require-validation"
-
-                            data-cc-on-file="false"
-
-                            data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
-
-                            id="payment-form">
+                action="{{ route('stripe') }}" 
+                method="post" 
+                class="require-validation" 
+                data-cc-on-file="false" 
+                data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" 
+                id="payment-form">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
-                       <h3 style="text-align: center;">Payment Details</h3>
+                        <h3 style="text-align: center;">Payment Details</h3>
                     </div>
                     <div class="col-lg-6">
-                        
-                        <div class="form-group">
+                        <div class='form-group'>
                             <label>Name on Card</label>
-                            <input type="text" name="name" value="{{ auth()->user()->name ?? '' }}" class="form-control"
-                                required>
+                            <input type='text' class='form-control' name="name" placeholder="Name on Card" value="{{ auth()->user()->name ?? '' }}" required>
                         </div>
-                        <div class="form-group">
-                            <label>Card No</label>
-                            <input type="text" name="phone" class="form-control" required>
+                        <div class='form-group'>
+                            <label>Card Number</label>
+                            <input type='text' class='form-control card-number' autocomplete='off' placeholder="Card Number" required>
                         </div>
-                        <div class="form-group row">
+                        <div class='form-group row'>
                             <div class="col-lg-4">
                                 <label>CVC</label>
-                                <input type="text" name="address" placeholder="ex. 311" class="form-control" required>
+                                <input type='text' class='form-control card-cvc' placeholder='ex. 311' required>
                             </div>
                             <div class="col-lg-4">
                                 <label>Expiration Month</label>
-                                <input type="text" name="address" placeholder="MM" class="form-control" required>
+                                <input type='text' class='form-control card-expiry-month' placeholder='MM' required>
                             </div>
                             <div class="col-lg-4">
                                 <label>Expiration Year</label>
-                                <input type="text" name="address" placeholder="YYYY" class="form-control" required>
+                                <input type='text' class='form-control card-expiry-year' placeholder='YYYY' required>
                             </div>
                         </div>
-
-                        <input type="hidden" name="payment_method" value="stripePay">
                     </div>
                     <div class="col-lg-6">
                         <div class="shoping__checkout">
@@ -93,10 +83,12 @@
                                 <li>Subtotal <span>RS {{ $total }}</span></li>
                                 <li>Total <span>RS {{ $total }}</span></li>
                             </ul>
-                            
-                            {{-- <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a> --}}
                         </div>
-
+                        <input type="hidden" name="name" value="{{ $data['name'] ?? '' }}">
+                        <input type="hidden" name="phone" value="{{ $data['phone'] ?? '' }}">
+                        <input type="hidden" name="address" value="{{ $data['address'] ?? '' }}">
+                        <input type="hidden" name="city" value="{{ $data['city'] ?? '' }}">
+                        <input type="hidden" name="payment_method" value="{{ $data['payment_method'] ?? '' }}">
                         <div class="row justify-content-center mt-3">
                             <div class="col-sm-3 px-0 text-center mobile-padding">
                                 <img class="order-summery-footer-image" src="{{asset('frontend/img/delivery_info.png')}}" alt="">
@@ -116,12 +108,13 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-6">
                         <button type="submit" class="btn primary-btn w-100">PAY NOW</button>
-                        
                     </div>
                 </div>
+            </form>
+
+            
         </div>
     </section>
     <!-- Shoping Cart Section End -->

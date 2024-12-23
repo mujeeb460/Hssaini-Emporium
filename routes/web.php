@@ -85,6 +85,7 @@ Route::resource('/contact', FrontendContactController::class);
 Route::resource('/order', FrontendOrderController::class);
 Route::post('/stripe', [StripePaymentController::class, 'stripePost'])->name('stripe');
 Route::get('/myorder', [FrontendUserController::class, 'myorder'])->name('myorder');
+Route::get('/orderComplete', [FrontendOrderController::class, 'orderComplete'])->name('orderComplete');
 
 
 // Admin Panel
@@ -118,6 +119,7 @@ Route::group(['middleware' => ['role:Customer'], 'prefix' => 'customer', 'as' =>
     Route::put('/cancel_order/{id}', [FrontendOrderController::class, 'cancel_order'])->name('cancel_order');
 
     Route::get('/CancelOrders', [FrontendOrderController::class, 'get_cancel_order'])->name('CancelOrders');
+
 
 
 

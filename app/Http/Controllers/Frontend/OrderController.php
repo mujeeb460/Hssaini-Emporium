@@ -56,13 +56,10 @@ class OrderController extends Controller
 
         if($request->payment_method == 'stripe')
         {
-            $data = $request->all(); 
+            $data = $request->all();
             $carts = Cart::with('product')->where('user_id', auth()->id())->get();
             return view('frontend.checkout_payment', compact('carts','data'));
 
-        }elseif($request->payment_method == 'stripePay') {
-            return "ok";
-        
         }else{
 
             $order = new Order;
@@ -87,7 +84,10 @@ class OrderController extends Controller
             }
 
             Cart::where('user_id', auth()->id())->delete();
-            return redirect('myorder')->with('success', 'Order Placed Successfully!');
+
+            return redirect('orderComplete')->with('success', 'Order Placed Successfully!')->with('orderID', $order->id);
+            
+            //return redirect('myorder')->with('success', 'Order Placed Successfully!');
         }
     }
 
@@ -171,9 +171,23 @@ class OrderController extends Controller
         return view('customer.cancel_orders', compact('my_cancel_orders'));
 
        
-
-        
     }
+
+
+     public function orderComplete()
+    {
+        if (!Auth::user()) {
+            return redirect()->route('login');
+        }
+
+        $user = Auth::user();
+       
+        return view('frontend.order_complete');
+
+       
+    }
+
+
 
 
 }
