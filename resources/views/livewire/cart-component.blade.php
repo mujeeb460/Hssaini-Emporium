@@ -58,6 +58,10 @@
                         <div class="product__details__price">
                             RS {{ $price }}
                             <input type="hidden" wire:model="price">
+
+                            @if ($product->mrp)
+                                <p style="vertical-align: middle; text-decoration: line-through">{{ $product->mrp }}</p>
+                            @endif
                         </div>
                         <p>{!! $product->description !!}</p>
 
