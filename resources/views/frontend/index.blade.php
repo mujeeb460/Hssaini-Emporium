@@ -224,7 +224,7 @@
     <div class="container">
         <div class="row masonry-style" data-masonry='{"percentPosition": false }'>
             <div class="col-md-6 mb-3">
-                <a href="product-listing.html">
+                <a href="">
                     <div class="detail h-600" style="background-image: url({{ asset('frontend/joy/images/banner-1.jpg') }});">
                         <h5>INTRODUCING luxury</h5>
                         <h2>Luminous Lighting</h2>
@@ -232,7 +232,7 @@
                 </a>
             </div>
             <div class="col-md-6 mb-3">
-                <a href="product-listing.html">
+                <a href="">
                     <div class="detail h-500" style="background-image: url({{ asset('frontend/joy/images/banner-2.jpg') }});">
                         <h6>Curious Brands</h6>
                         <h3>Brands You'll Love</h3>
@@ -240,6 +240,25 @@
                 </a>
             </div>
         </div>
+        <div class="row masonry-style" data-masonry='{"percentPosition": false }'>
+            <div class="col-md-6 mb-3">
+                <a href="">
+                    <div class="detail h-600" style="background-image: url({{ asset('frontend/joy/images/banner-3.jpg') }});">
+                        <h5>INTRODUCING luxury</h5>
+                        <h2>Luminous Lighting</h2>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <a href="">
+                    <div class="detail h-500" style="background-image: url({{ asset('frontend/joy/images/banner-4.jpg') }});">
+                        <h6>Curious Brands</h6>
+                        <h3>Brands You'll Love</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+
 
         <section class="featured spad">
             <div class="container">
