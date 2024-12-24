@@ -76,6 +76,10 @@
                                 <div class="alert alert-success mt-2">
                                     {{ session('success') }}
                                 </div>
+                            @elseif (session()->has('error'))
+                                <div class="alert alert-danger mt-2">
+                                    {{ session('error') }}
+                                </div>
                             @endif
                         </form>
 

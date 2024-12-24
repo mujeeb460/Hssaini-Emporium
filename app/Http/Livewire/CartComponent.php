@@ -33,7 +33,7 @@ class CartComponent extends Component
         $this->relatedProducts = $relatedProducts;
         $this->productStock = $product->stock;
 
-        $cart = Cart::where(['product_id'=> $this->product->id, 'user_id'=>Auth::user()->id])->first();
+        $cart = Cart::where(['product_id'=> $this->product->id, 'user_id'=>Auth::user()->id??0])->first();
         if($cart)
         {
             $this->qty = $cart->qty;
@@ -63,21 +63,30 @@ class CartComponent extends Component
             return;
         }
 
-        $cart = Cart::where('product_id', $this->product->id)
-            ->where('user_id', Auth::user()->id)
-            ->firstOrNew();
+        if(!Auth::user())
+        {
+            session()->flash('error', 'Please login first');
+        }
+        else
+        {
 
-        $cart->qty = $this->qty;
-        $cart->size = $this->selectedCapacity;
-        $cart->color = $this->selectedColor;
-        $cart->product_id = $this->product->id;
-        $cart->user_id = Auth::user()->id;
-        $cart->save();
+            $cart = Cart::where('product_id', $this->product->id)
+                ->where('user_id', Auth::user()->id)
+                ->firstOrNew();
 
-        session()->put('cart', $cart);
+            $cart->qty = $this->qty;
+            $cart->size = $this->selectedCapacity;
+            $cart->color = $this->selectedColor;
+            $cart->product_id = $this->product->id;
+            $cart->user_id = Auth::user()->id;
+            $cart->save();
 
-        $this->emit('cartUpdated');
-        session()->flash('success', 'Product added to cart!');
+            session()->put('cart', $cart);
+
+            $this->emit('cartUpdated');
+            session()->flash('success', 'Product added to cart!');
+        }
+
     }
 
     public function updatedQty()
