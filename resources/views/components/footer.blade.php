@@ -8,7 +8,7 @@
                                 width="70%"></a>
                     </div>
                     <ul>
-                        <li>Address: Shop 12/A Complex Karachi</li>
+                        <li>Address: Road Shaheed-e-Millat Rd, Phase 2 Defence View Housing Society, Karachi, Karachi City, Sindh 75500</li>
                         <li>Phone: +92 334 219 1443</li>
                         <li>Email: info@hussainiemporium.pk</li>
                     </ul>
@@ -42,7 +42,7 @@
                     <div class="footer__copyright__text">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;
-                            2024 All rights reserved | Developed by Hussaini Emporium
+                            2024 All rights reserved | Developed by Iqra University Students
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

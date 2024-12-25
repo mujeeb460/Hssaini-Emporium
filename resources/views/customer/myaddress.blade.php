@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             @empty
-                            p style="text-align: center;">No data available.</p>
+                            <p style="text-align: center;">No data available.</p>
                         @endforelse
                     </section>
                 </div>
