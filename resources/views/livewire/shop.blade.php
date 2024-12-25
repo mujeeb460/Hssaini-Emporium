@@ -87,6 +87,9 @@
                                         <div class="latest-product__item__text">
                                             <h6>{{ $product->title }}</h6>
                                             <span>RS {{ $product->price }}</span>
+                                            @if($product->mrp)
+                                                <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
+                                            @endif
                                         </div>
                                     </a>
                                 @endforeach
@@ -118,6 +121,9 @@
                                     <div class="product__item__text">
                                         <h6><a href="#">{{ $product->title }}</a></h6>
                                         <h5>RS {{ $product->price }}</h5>
+                                        @if($product->mrp)
+                                            <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
