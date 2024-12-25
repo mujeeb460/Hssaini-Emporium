@@ -18,13 +18,18 @@ class Shop extends Component
     ];
     public $selectedType = null;
     public $selectedId = null;
+    public $selectedPrice = ['min' => 0, 'max' => 0];
 
     public function mount($type, $id)
     {
         $this->categories = Category::with('subCategories.childCategories')->get();
         $this->latestProducts = Product::orderBy('id', 'desc')->limit(6)->get();
         $this->saleProducts = Product::inRandomOrder()->limit(6)->get();
-        $this->setFilter($type,$id);
+        $this->setFilter($type, $id);
+        $this->data['price']['min'] = Product::min('price'); // Set initial min price
+        $this->data['price']['max'] = Product::max('price'); // Set initial max price
+        $this->selectedPrice = ['min' => $this->data['price']['min'], 'max' => $this->data['price']['max']]; // Initialize selected price
+        
     }
 
     public function setFilter($type, $id)
@@ -56,7 +61,14 @@ class Shop extends Component
             }
         }
 
+        // Price filter logic
+        if ($this->selectedPrice['min'] || $this->selectedPrice['max']) {
+            $query->whereBetween('price', [$this->selectedPrice['min'], $this->selectedPrice['max']]);
+        }
+
         $this->products = $query->get();
+        $this->data['price']['min'] = $this->products->min('price');
+        $this->data['price']['max'] = $this->products->max('price');
         $this->data['product']['total'] = $this->products->count();
     }
 

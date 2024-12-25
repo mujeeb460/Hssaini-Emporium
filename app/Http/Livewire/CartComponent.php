@@ -65,7 +65,7 @@ class CartComponent extends Component
             return;
         }
 
-        if($this->user_id || $this->user_id != 0)
+        if($this->user_id == null || $this->user_id < 0)
         {
             session()->flash('error', 'Please login first');
         }
