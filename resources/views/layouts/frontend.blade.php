@@ -148,6 +148,12 @@
         })
     </script>
     <?php endif ?>
+
+    <script>
+        window.addEventListener('myCart', event => {
+            let a = $('.header__cart > ul > li > a > span').html(event.detail.qty);
+        })
+    </script>
 </body>
 
 </html>
