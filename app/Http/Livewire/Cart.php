@@ -20,9 +20,9 @@ class Cart extends Component
 
     public function updateCart()
     {
-        $userId = auth()->id();
+        $userId = auth()->id()??0;
 
-        if ($userId) {
+        if ($userId || $userId == 0) {
             $this->cartCount = CartModel::where('user_id', $userId)->count();
             $this->totalPrice = CartModel::where('user_id', $userId)
                 ->with('product')
