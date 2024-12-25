@@ -433,7 +433,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        &copy; 2023 - Developed by <a href="https://orasoft.pk">OraSoft.pk</a>
+                        &copy; 2024 - Developed by <a href="">Iqra University Students</a>
                     </div>
                 </div>
             </div>

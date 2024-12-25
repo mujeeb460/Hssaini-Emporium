@@ -34,7 +34,7 @@
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>Address</h4>
-                        <p>Shop 12/A Complex Karachi</p>
+                        <p>Road Shaheed-e-Millat Rd, Phase 2 Defence View Housing Society, Karachi, Karachi City, Sindh 75500</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
@@ -48,7 +48,7 @@
                     <div class="contact__widget">
                         <span class="icon_mail_alt"></span>
                         <h4>Email</h4>
-                        <p>info@arskincare.pk</p>
+                        <p>info@hussainiemporium.pk</p>
                     </div>
                 </div>
             </div>
@@ -59,15 +59,15 @@
     <!-- Map Begin -->
     <div class="map">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3604.4525934205653!2d67.01335351091047!3d24.8607340253072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sShop%2012%2FA%20Complex%20Karachi!5e0!3m2!1sen!2s!4v1703313042116!5m2!1sen!2s"
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3604.4525934205653!2d67.01335351091047!3d24.8607340253072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sRoad%20Shaheed-e-Millat%20Rd%2C%20Phase%202%20Defence%20View%20Housing%20Society%2C%20Karachi%2C%20Karachi%20City%2C%20Sindh%2075500!5e0!3m2!1sen!2s!4v1703313042116!5m2!1sen!2s"
             height="500" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
         <div class="map-inside">
             <i class="icon_pin"></i>
             <div class="inside-widget">
-                <h4>Ar Skincare</h4>
+                <h4>Hussaini Emporium</h4>
                 <ul>
                     <li>Phone: +92 333 6857367</li>
-                    <li>Add: Shop 12/A Complex Karachi</li>
+                    <li>Add: Road Shaheed-e-Millat Rd, Phase 2 Defence View Housing Society, Karachi, Karachi City, Sindh 75500</li>
                 </ul>
             </div>
         </div>

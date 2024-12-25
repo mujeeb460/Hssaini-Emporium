@@ -30,7 +30,6 @@
                 <span class="arrow_carrot-down"></span>
                 <ul>
                     <li><a href="{{ route('customer.profile.index') }}">Profile</a></li>
-                    <li><a href="{{ route('customer.change_password') }}">Setting</a></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                             @csrf
@@ -102,7 +101,6 @@
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
                                     <li><a href="{{ route('customer.profile.index') }}">Profile</a></li>
-                                    <li><a href="{{ route('customer.change_password') }}">Setting</a></li>
                                     <li>
                                         <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                                             @csrf

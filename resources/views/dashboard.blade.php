@@ -330,7 +330,7 @@
                                 </div>
                                 <div class="col-6">
                                     <h3 data-plugin="counterup">854</h3>
-                                    <p class="text-muted mb-1">Panding</p>
+                                    <p class="text-muted mb-1">Pending</p>
                                 </div>
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                                 </div>
                                 <div class="col-6">
                                     <h3 data-plugin="counterup">22</h3>
-                                    <p class="text-muted mb-1">Pandding</p>
+                                    <p class="text-muted mb-1">Pendding</p>
                                 </div>
                             </div>
                         </div>
