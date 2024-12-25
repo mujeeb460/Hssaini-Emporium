@@ -24,6 +24,11 @@ class StripePaymentController extends Controller
             return redirect()->back()->with('success', 'Cart is empty!');
         }
 
+        $total = $carts->sum(function ($cart) {
+            return $cart->product->price * $cart->qty;
+        });
+
+
             $order = new Order;
             $order->name = $request->name;
             $order->phone = $request->phone;
@@ -48,10 +53,10 @@ class StripePaymentController extends Controller
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
             Stripe\Charge::create ([
-                    "amount" => 100 * 100,
+                    "amount" => $total,
                     "currency" => "usd",
                     "source" => $request->stripeToken,
-                    "description" => "Test payment from itsolutionstuff.com." 
+                    "description" => "Payment for Order #" . $order->id, 
             ]);
 
             $orderID = 8979798;

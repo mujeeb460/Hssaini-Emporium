@@ -69,7 +69,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+92 222 445 344</h5>
+                                <h5>+92 334 219 1443</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>

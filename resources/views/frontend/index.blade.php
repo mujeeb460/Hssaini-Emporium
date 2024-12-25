@@ -292,14 +292,6 @@
                     <div class="section-title">
                         <h2>Featured Product</h2>
                     </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            @foreach ($categories as $category)
-                                <li data-filter=".{{ $category->slug }}">{{ $category->title }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="row featured__filter">
@@ -320,6 +312,7 @@
                             <div class="featured__item__text">
                                 <h6><a href="#">{{ $product->title }}</a></h6>
                                 <h5>RS {{ $product->price }}</h5>
+                                <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
                             </div>
                         </div>
                     </div>
