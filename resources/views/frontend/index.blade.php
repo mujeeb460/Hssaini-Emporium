@@ -224,7 +224,7 @@
     <div class="container">
         <div class="row masonry-style" data-masonry='{"percentPosition": false }'>
             <div class="col-md-6 mb-3">
-                <a href="">
+                <a href="#">
                     <div class="detail h-600" style="background-image: url({{ asset('frontend/joy/images/banner-1.jpg') }});">
                         <h5>INTRODUCING luxury</h5>
                         <h2>Luminous Lighting</h2>
@@ -232,7 +232,7 @@
                 </a>
             </div>
             <div class="col-md-6 mb-3">
-                <a href="">
+                <a href="#">
                     <div class="detail h-500" style="background-image: url({{ asset('frontend/joy/images/banner-2.jpg') }});">
                         <h6>Curious Brands</h6>
                         <h3>Brands You'll Love</h3>
@@ -242,7 +242,7 @@
         </div>
         <div class="row masonry-style" data-masonry='{"percentPosition": false }'>
             <div class="col-md-6 mb-3">
-                <a href="">
+                <a href="#">
                     <div class="detail h-600" style="background-image: url({{ asset('frontend/joy/images/banner-3.jpg') }});">
                         <h5>INTRODUCING luxury</h5>
                         <h2>Luminous Lighting</h2>
@@ -250,7 +250,7 @@
                 </a>
             </div>
             <div class="col-md-6 mb-3">
-                <a href="">
+                <a href="#">
                     <div class="detail h-500" style="background-image: url({{ asset('frontend/joy/images/banner-4.jpg') }});">
                         <h6>Curious Brands</h6>
                         <h3>Brands You'll Love</h3>
@@ -277,6 +277,9 @@
                             <h6>{{ $product->category->title }}</h6>
                             <h4>{{ $product->title }}</h4>
                             <p class="price">RS {{ $product->price }}</p>
+                            @if($product->mrp)
+                                <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
+                            @endif
                             <a href="{{ route('product', [$product->id, $product->title, $product->description]) }}" class="btn-shop">Shop Now</a>
                         </div>
                     </div>
@@ -312,7 +315,9 @@
                             <div class="featured__item__text">
                                 <h6><a href="#">{{ $product->title }}</a></h6>
                                 <h5>RS {{ $product->price }}</h5>
-                                <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
+                                @if($product->mrp)
+                                    <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
+                                @endif
                             </div>
                         </div>
                     </div>
