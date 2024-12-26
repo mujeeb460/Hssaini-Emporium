@@ -59,22 +59,18 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="sidebar__item">
+                        <div class="sidebar__item" wire:ignore>
                             <h4>Price</h4>
-                            <div class="price-range-wrap">
-                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                    data-min="{{ $data['price']['min'] }}" data-max="{{ $data['price']['max'] }}">
-                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                </div>
-                                <div class="range-slider">
-                                    <div class="price-input">
-                                        <input type="text" id="minamount" value="{{ $data['price']['min'] }}">
-                                        <input type="text" id="maxamount" value="{{ $data['price']['max'] }}">
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="slider-container">
+                                <div class="range-track"></div>
+                                <div class="range-progress" id="range-progress"></div>
+                                <input type="range" name="min" id="minRange" wire:model="selectedPrice.min" min="{{ $data['price']['min'] }}" max="{{ $data['price']['max'] }}">
+                                <input type="range" name="max" id="maxRange" wire:model="selectedPrice.max" min="{{ $data['price']['min'] }}" max="{{ $data['price']['max'] }}">
+                              </div>
+                              <div class="mt-5">
+                                <label for="minRange" class="form-label">Min: <span id="minValue">{{ $selectedPrice['min'] }}</span></label>
+                                <label for="maxRange" class="form-label ms-4">Max: <span id="maxValue">{{ $selectedPrice['max'] }}</span></label>
+                              </div>
                         </div>
                         <div class="sidebar__item">
                             <div class="latest-product__text">
@@ -129,3 +125,94 @@
     </section>
     <!-- Product Section End -->
 </div>
+
+<script>
+    const minRange = document.getElementById('minRange');
+    const maxRange = document.getElementById('maxRange');
+    const rangeProgress = document.getElementById('range-progress');
+    const minValueDisplay = document.getElementById('minValue');
+    const maxValueDisplay = document.getElementById('maxValue');
+
+    function updateRange() {
+      const min = parseInt(minRange.value);
+      const max = parseInt(maxRange.value);
+
+      // Ensure min doesn't exceed max
+      if (min > max - 1) {
+        minRange.value = max - 1;
+      }
+      // Ensure max doesn't go below min
+      if (max < min + 1) {
+        maxRange.value = min + 1;
+      }
+
+      // Update the range progress bar
+      const minPercent = (minRange.value / minRange.max) * 100;
+      const maxPercent = (maxRange.value / maxRange.max) * 100;
+
+      rangeProgress.style.left = `${minPercent}%`;
+      rangeProgress.style.width = `${maxPercent - minPercent}%`;
+
+      // Update displayed values
+      minValueDisplay.textContent = minRange.value;
+      maxValueDisplay.textContent = maxRange.value;
+    }
+
+    // Initialize range
+    updateRange();
+
+    // Add event listeners
+    minRange.addEventListener('input', updateRange);
+    maxRange.addEventListener('input', updateRange);
+  </script>
+
+<style>
+    .slider-container {
+      position: relative;
+      width: 100%;
+    }
+    .range-track {
+      position: absolute;
+      height: 5px;
+      background-color: #ddd;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+    .range-progress {
+      position: absolute;
+      height: 5px;
+      background-color: #0d6efd;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    input[type="range"] {
+      position: absolute;
+      width: 100%;
+      height: 0;
+      pointer-events: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      pointer-events: auto;
+      width: 16px;
+      height: 16px;
+      background-color: #0d6efd;
+      border: none;
+      border-radius: 50%;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      pointer-events: auto;
+      width: 16px;
+      height: 16px;
+      background-color: #0d6efd;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
