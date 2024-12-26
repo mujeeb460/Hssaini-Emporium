@@ -20,22 +20,31 @@ class Shop extends Component
     public $selectedId = null;
     public $selectedPrice = ['min' => 0, 'max' => 0];
 
-    public function mount($type, $id)
+    public function mount($type = null, $id = null)
     {
         $this->categories = Category::with('subCategories.childCategories')->get();
         $this->latestProducts = Product::orderBy('id', 'desc')->limit(6)->get();
         $this->saleProducts = Product::inRandomOrder()->limit(6)->get();
+        $this->data['price']['min'] = Product::min('price');
+        $this->data['price']['max'] = Product::max('price');
+        $this->selectedPrice = ['min' => $this->data['price']['min'], 'max' => $this->data['price']['max']];
         $this->setFilter($type, $id);
-        $this->data['price']['min'] = Product::min('price'); // Set initial min price
-        $this->data['price']['max'] = Product::max('price'); // Set initial max price
-        $this->selectedPrice = ['min' => $this->data['price']['min'], 'max' => $this->data['price']['max']]; // Initialize selected price
-        
     }
 
-    public function setFilter($type, $id)
+    public function updatedSelectedPrice()
+    {
+        $this->loadProducts();
+    }
+
+    public function setFilter($type = null, $id = null)
     {
         $this->selectedType = $type;
         $this->selectedId = $id;
+
+        $this->selectedPrice = [
+            'min' => $this->data['price']['min'],
+            'max' => $this->data['price']['max'],
+        ];
         $this->loadProducts();
     }
 
@@ -43,7 +52,6 @@ class Shop extends Component
     {
         $query = Product::query();
 
-        // Filter logic
         if ($this->selectedType && $this->selectedId) {
             switch ($this->selectedType) {
                 case 'category':
@@ -55,20 +63,14 @@ class Shop extends Component
                 case 'childCategory':
                     $query->where('childcategory_id', $this->selectedId);
                     break;
-                default:
-                    $this->products = [];
-                    return;
             }
         }
 
-        // Price filter logic
         if ($this->selectedPrice['min'] || $this->selectedPrice['max']) {
             $query->whereBetween('price', [$this->selectedPrice['min'], $this->selectedPrice['max']]);
         }
 
         $this->products = $query->get();
-        $this->data['price']['min'] = $this->products->min('price');
-        $this->data['price']['max'] = $this->products->max('price');
         $this->data['product']['total'] = $this->products->count();
     }
 
