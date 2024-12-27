@@ -270,4 +270,14 @@ h5 {
         // Perform any additional logic if needed
         location.reload(); // Reloads the page to reflect cart changes
     });
+
+    document.addEventListener('livewire:update', () => {
+        console.log('Livewire component updated!');
+        myCustomFunction();
+    });
+
+    function myCustomFunction() {
+        alert('Custom function executed!');
+    }
+
 </script>
