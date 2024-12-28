@@ -109,9 +109,9 @@ class CartController extends Controller
         return true;
     }
 
-    public function addCart($id,$title)
+    public function addCart($title)
     {
-        return Redirect()->route('product', [$id , $title]);
+        return Redirect()->route('product', [$title]);
     }
 
 

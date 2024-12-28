@@ -76,7 +76,7 @@
                             <div class="latest-product__text">
                                 <h4>Latest Products</h4>
                                 @foreach ($latestProducts as $product)
-                                    <a href="{{ route('product', [$product->id, $product->slug, $product->description]) }}" class="latest-product__item">
+                                    <a href="{{ route('product', [$product->slug]) }}" class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="{{ asset('storage/uploads/' . $product->thumbnail) }}" alt="">
                                         </div>
@@ -106,11 +106,11 @@
                                     <div class="product__item__pic">
                                         <img src="{{ asset('storage/uploads/' . $product->thumbnail) }}" alt="{{ $product->title }}" class="product-image">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="{{ route('product', [$product->id, $product->slug, $product->description]) }}">
+                                            <li><a href="{{ route('product',$product->slug) }}">
                                                 <i class="fa fa-heart"></i></a></li>
-                                            <li><a href="{{ route('product', [$product->id, $product->slug, $product->description]) }}">
+                                            <li><a href="{{ route('product',$product->slug) }}">
                                                 <i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="{{ route('product', [$product->id, $product->slug, $product->description]) }}">
+                                            <li><a href="{{ route('product',$product->slug) }}">
                                                 <i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>

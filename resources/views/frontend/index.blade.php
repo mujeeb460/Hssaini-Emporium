@@ -195,12 +195,13 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            <form action="{{ route('searchProduct') }}" method="post">
+                                @csrf
                                 {{-- <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div> --}}
-                                <input type="text" placeholder="What do yo u need?">
+                                <input type="text" name="product_slug" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
@@ -224,7 +225,7 @@
     <div class="container">
         <div class="row masonry-style" data-masonry='{"percentPosition": false }'>
             <div class="col-md-6 mb-3">
-                <a href="#">
+                <a href="{{ Route('shop', ['category',4,'kitchen-accessories']) }}">
                     <div class="detail h-600" style="background-image: url({{ asset('frontend/joy/images/banner-1.jpg') }});">
                         <h5>INTRODUCING luxury</h5>
                         <h2>Luminous Lighting</h2>
@@ -232,7 +233,7 @@
                 </a>
             </div>
             <div class="col-md-6 mb-3">
-                <a href="#">
+                <a href="{{ Route('shop') }}">
                     <div class="detail h-500" style="background-image: url({{ asset('frontend/joy/images/banner-2.jpg') }});">
                         <h6>Curious Brands</h6>
                         <h3>Brands You'll Love</h3>
@@ -242,7 +243,7 @@
         </div>
         <div class="row masonry-style" data-masonry='{"percentPosition": false }'>
             <div class="col-md-6 mb-3">
-                <a href="#">
+                <a href="{{ Route('shop', ['category',4,'kitchen-accessories']) }}">
                     <div class="detail h-600" style="background-image: url({{ asset('frontend/joy/images/banner-3.jpg') }});">
                         <h5>INTRODUCING luxury</h5>
                         <h2>Luminous Lighting</h2>
@@ -250,7 +251,7 @@
                 </a>
             </div>
             <div class="col-md-6 mb-3">
-                <a href="#">
+                <a href="{{ Route('shop') }}">
                     <div class="detail h-500" style="background-image: url({{ asset('frontend/joy/images/banner-4.jpg') }});">
                         <h6>Curious Brands</h6>
                         <h3>Brands You'll Love</h3>
@@ -280,7 +281,7 @@
                             @if($product->mrp)
                                 <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
                             @endif
-                            <a href="{{ route('product', [$product->id, $product->title, $product->description]) }}" class="btn-shop">Shop Now</a>
+                            <a href="{{ route('product', [$product->slug]) }}" class="btn-shop">Shop Now</a>
                         </div>
                     </div>
                     @endforeach
@@ -304,11 +305,11 @@
                             <div class="featured__item__pic set-bg"
                                 data-setbg="{{ asset('storage/uploads/' . $product->thumbnail) }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="{{ Route('addcart', [$product->id, $product->title, $product->description]) }}"><i class="fa fa-heart"></i></a>
+                                    <li><a href="{{ Route('addcart', [$product->slug]) }}"><i class="fa fa-heart"></i></a>
                                     </li>
-                                    <li><a href="{{ Route('addcart', [$product->id, $product->title, $product->description]) }}"><i
+                                    <li><a href="{{ Route('addcart', [$product->slug]) }}"><i
                                                 class="fa fa-retweet"></i></a></li>
-                                    <li><a href="{{ Route('addcart', [$product->id, $product->title, $product->description]) }}"><i
+                                    <li><a href="{{ Route('addcart', [$product->slug]) }}"><i
                                                 class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
