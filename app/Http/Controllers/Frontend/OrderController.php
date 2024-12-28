@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Cart;
+use App\Models\User;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Cart;
-use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -48,7 +49,9 @@ class OrderController extends Controller
             "payment_method" => "required"
         ]);
 
-        $carts = Cart::where('user_id', auth()->id())->get();
+        $user_id = auth()->id ?? 0;
+
+        $carts = Cart::where('user_id', $user_id)->get();
 
         if (!$carts) {
             return redirect()->back()->with('success', 'Cart is empty!');
@@ -57,7 +60,7 @@ class OrderController extends Controller
         if($request->payment_method == 'stripe')
         {
             $data = $request->all();
-            $carts = Cart::with('product')->where('user_id', auth()->id())->get();
+            $carts = Cart::with('product')->where('user_id', $user_id)->get();
             return view('frontend.checkout_payment', compact('carts','data'));
 
         }else{
@@ -68,7 +71,7 @@ class OrderController extends Controller
             $order->address = $request->address;
             $order->city = $request->city;
             $order->method = $request->payment_method;
-            $order->user_id = auth()->id();
+            $order->user_id = $user_id;
             $order->save();
 
             foreach ($carts as $cart) {
@@ -83,7 +86,7 @@ class OrderController extends Controller
                 $orderDetail->save();
             }
 
-            Cart::where('user_id', auth()->id())->delete();
+            Cart::where('user_id', $user_id)->delete();
 
             return redirect('orderComplete')->with('success', 'Order Placed Successfully!')->with('orderID', $order->id);
             
@@ -176,13 +179,42 @@ class OrderController extends Controller
 
      public function orderComplete()
     {
-        if (!Auth::user()) {
-            return redirect()->route('login');
+        $user_id = Auth::user()->id ?? 0;
+
+        if($user_id)
+        {
+            $user = User::where('id',$user_id)->first();
+        }
+        else
+        {
+            $userArray = [
+                "id" => '0',
+                "first_name" => "Customer",
+                "last_name" => null,
+                "email" => "Customer@gmail.com",
+                "mobile" => "-",
+                "address" => "-",
+                "email_verified_at" => null,
+                "two_factor_confirmed_at" => null,
+                "current_team_id" => null,
+                "profile_photo_path" => null,
+                "provider" => null,
+                "provider_id" => null,
+                "created_at" => "2024-12-14T22:18:29.000000Z",
+                "updated_at" => "2024-12-14T22:18:29.000000Z",
+                "facebook_id" => null,
+                "google_id" => null
+            ];
+            
+            // Convert to object
+            $user = (object) $userArray;
         }
 
-        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
        
-        return view('frontend.order_complete');
+        return view('frontend.order_complete',compact('user'));
 
        
     }

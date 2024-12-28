@@ -65,16 +65,11 @@ class CartComponent extends Component
             return;
         }
 
-        if($this->user_id == null || $this->user_id < 0)
+        if($this->user_id != null || $this->user_id == 0)
         {
-            session()->flash('error', 'Please login first');
-        }
-        else
-        {
-
             $cart = Cart::where('product_id', $this->product->id)
-                ->where('user_id', $this->user_id)
-                ->firstOrNew();
+            ->where('user_id', $this->user_id)
+            ->firstOrNew();
 
             $cart->qty = $this->qty;
             $cart->size = $this->selectedCapacity;
@@ -88,6 +83,10 @@ class CartComponent extends Component
             $cartCount = Cart::where('user_id', $this->user_id)->count();
             $this->dispatchBrowserEvent('myCart', ['qty' => $cartCount]);
             session()->flash('success', 'Product added to cart!');
+        }
+        else
+        {
+            session()->flash('error', 'Please login first');
         }
 
     }
