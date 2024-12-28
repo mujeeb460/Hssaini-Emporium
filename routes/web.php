@@ -72,14 +72,16 @@ Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCa
 
 
 
-Route::get('/product/{id?}/{title?}', [FrontendDashboardController::class, 'singleProduct'])->name('product');
+Route::get('/product/{slug?}', [FrontendDashboardController::class, 'singleProduct'])->name('product');
+
+Route::post('/searchProduct', [FrontendDashboardController::class, 'searchProduct'])->name('searchProduct');
 
 Route::get('/shop/{type?}/{id?}', function ($type = null, $id = null, $title = null) {
     return view('frontend.shop', ['type' => $type, 'id' => $id, 'title' => $title ]);
 })->name('shop');
 
 Route::resource('cart', FrontendCartController::class);
-Route::get('/addcart/{id?}/{title?}', [FrontendCartController::class, 'addCart'])->name('addcart');
+Route::get('/addcart/{title?}', [FrontendCartController::class, 'addCart'])->name('addcart');
 Route::get('/contactus', [FrontendDashboardController::class, 'contact'])->name('contactus');
 Route::resource('/contact', FrontendContactController::class);
 Route::resource('/order', FrontendOrderController::class);

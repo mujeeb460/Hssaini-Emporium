@@ -5,7 +5,7 @@
         <ul class="header__menu__dropdown">
             @foreach ($categories as $category)
                 <li>
-                    <a href="{{ Route('shop', ['category', $category->id, $category->slug, $category->thumbnail]) }}">{{ $category->title }}</a>
+                    <a href="{{ Route('shop', ['category', $category->id, $category->slug]) }}">{{ $category->title }}</a>
                     @if ($category->subCategories->isNotEmpty())
                         <ul>
                             @foreach ($category->subCategories as $subCategory)

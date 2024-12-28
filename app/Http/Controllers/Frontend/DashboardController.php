@@ -21,20 +21,44 @@ class DashboardController extends Controller
         return view('frontend.index', compact('products', 'categories', 'letestProducts', 'topRatedProducts', 'reviewProducts'));
     }
 
-    public function singleProduct($id,$title)
+    public function singleProduct($title)
     {
         $title = str_replace(' ', '-', $title);
 
-        $product = Product::with('category','colors','storageCapacities')
-        ->where('id', $id)
-        ->whereRaw('LOWER(REPLACE(title, " ", "-")) LIKE ?', [strtolower('%' . $title . '%')])
-        ->first();                 
+       $product = Product::with('category','colors','storageCapacities')
+        ->whereRaw('LOWER(REPLACE(slug, " ", "-")) LIKE ?', [strtolower('%' . $title . '%')])
+        ->first();
 
+        if($product)
+        {                 
 
-        $relatedProducts = $product->category->products;
+            $relatedProducts = $product->category->products;
 
-        return view('frontend.singleProduct', compact('product', 'relatedProducts'));
+            return view('frontend.singleProduct', compact('product', 'relatedProducts'));
+        }else{
+            return redirect('/');
+        }
     }
+
+    public function searchProduct(Request $request)
+    {
+        $slug = str_replace(' ', '-', $request->product_slug);
+
+       $product = Product::with('category','colors','storageCapacities')
+        ->whereRaw('LOWER(REPLACE(slug, " ", "-")) LIKE ?', [strtolower('%' . $slug . '%')])
+        ->first();
+
+        if($product)
+        {                 
+            $relatedProducts = $product->category->products;
+
+            return view('frontend.singleProduct', compact('product', 'relatedProducts'));
+        }else{
+
+            return redirect('/')->with(['success'=>'Product not listed']);
+        }
+    }
+
     public function shop($id = null)
     {
         $categories = Category::get();
