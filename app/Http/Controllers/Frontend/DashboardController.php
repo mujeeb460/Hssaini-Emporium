@@ -44,15 +44,17 @@ class DashboardController extends Controller
     {
         $slug = str_replace(' ', '-', $request->product_slug);
 
-       $product = Product::with('category','colors','storageCapacities')
+       $products = Product::with('category','colors','storageCapacities')
         ->whereRaw('LOWER(REPLACE(slug, " ", "-")) LIKE ?', [strtolower('%' . $slug . '%')])
-        ->first();
+        ->get();
 
-        if($product)
+        $data['product']['total'] = $products->count();
+
+        if($products)
         {                 
-            $relatedProducts = $product->category->products;
+            //$relatedProducts = $products->category->products;
 
-            return view('frontend.singleProduct', compact('product', 'relatedProducts'));
+            return view('frontend.search_product', compact('products','data'));
         }else{
 
             return redirect('/')->with(['success'=>'Product not listed']);
