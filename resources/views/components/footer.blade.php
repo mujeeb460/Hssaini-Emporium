@@ -109,15 +109,15 @@
 </style>
 <link rel="stylesheet" href="{{ asset('chat/styles.css') }}">
 <div class="chat-icon" id="chatIcon">
-    <i class="fas fa-comments"></i>
+    <i class="fa fa-comments"></i>
 </div>
 
 <!-- Chat Popup -->
 <div class="chat-container" id="chatContainer">
     <div class="chat-header">
-        <h3>AI Assistant</h3>
+        <h5 class="text-white">AI Assistant</h5>
         <button class="minimize-btn" id="minimizeBtn">
-            <i class="fas fa-minus"></i>
+            <i class="fa fa-minus"></i>
         </button>
     </div>
     <div class="chat-messages" id="chatMessages">
@@ -129,7 +129,7 @@
     <div class="chat-input">
         <input type="text" id="userInput" placeholder="Type your message...">
         <button id="sendBtn">
-            <i class="fas fa-paper-plane"></i>
+            <i class="fa fa-paper-plane"></i>
         </button>
     </div>
 </div>
