@@ -53,7 +53,7 @@
 </footer>
 
 <style>
-    
+
     .chat-icon {
         position: fixed;
         bottom: 20px;
@@ -107,25 +107,34 @@
         border-top: 1px solid #ccc;
     }
 </style>
-
+<link rel="stylesheet" href="{{ asset('chat/styles.css') }}">
 <div class="chat-icon" id="chatIcon">
-    <i class="fa fa-comment"></i>
+    <i class="fas fa-comments"></i>
 </div>
 
 <!-- Chat Popup -->
-<div class="chat-popup" id="chatPopup">
-    <div class="chat-popup-header">
-        <strong>Support Chat</strong>
+<div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+        <h3>AI Assistant</h3>
+        <button class="minimize-btn" id="minimizeBtn">
+            <i class="fas fa-minus"></i>
+        </button>
     </div>
-    <div class="chat-popup-body">
-        <iframe 
-            src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/12/22/12/20241222124346-ROHOUB5G.json" 
-            allow="microphone; autoplay" 
-            frameborder="0" 
-            style="border: none; width: 100%; height: 350px;">
-        </iframe>
+    <div class="chat-messages" id="chatMessages">
+        <!-- Messages will be added here dynamically -->
+    </div>
+    <div class="suggestions" id="suggestions">
+        <!-- Suggestions will be added here dynamically -->
+    </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button id="sendBtn">
+            <i class="fas fa-paper-plane"></i>
+        </button>
     </div>
 </div>
+
+<script src="{{ asset('chat/script.js') }}"></script>
 
 <script>
     const chatIcon = document.getElementById('chatIcon');
