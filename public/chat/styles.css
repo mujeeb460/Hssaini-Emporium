@@ -116,6 +116,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    display: none;
 }
 
 .suggestion-chip {
