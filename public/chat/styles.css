@@ -1,9 +1,5 @@
 :root {
-<<<<<<< HEAD
-    --primary-color: #007bff;
-=======
     --primary-color: #7ead39;
->>>>>>> origin/main
     --secondary-color: #6c757d;
     --background-color: #f8f9fa;
     --text-color: #212529;
@@ -120,6 +116,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    display: none;
 }
 
 .suggestion-chip {
