@@ -115,7 +115,7 @@
 <!-- Chat Popup -->
 <div class="chat-container" id="chatContainer">
     <div class="chat-header">
-        <h5 class="text-white">AI Assistant</h5>
+        <h5 class="text-white">Support Chat</h5>
         <button class="minimize-btn" id="minimizeBtn">
             <i class="fa fa-minus"></i>
         </button>
