@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('product_storage_capacities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->string('capacity'); // e.g., 64GB, 128GB
-            $table->decimal('price', 10, 2); // Price for the storage option
+            $table->string('attribute_type');
+            $table->string('attribute_detail');
+            $table->decimal('attribute_price', 10, 2); // Price for the storage option
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

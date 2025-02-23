@@ -100,7 +100,7 @@ class CartComponent extends Component
     {
         if($this->capacity)
         {
-            $this->price = $this->capacity->price;
+            $this->price = $this->capacity->attribute_price;
         }
         else
         {

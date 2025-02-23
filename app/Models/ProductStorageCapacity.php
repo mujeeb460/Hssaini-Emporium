@@ -11,8 +11,9 @@ class ProductStorageCapacity extends Model
 
     protected $fillable = [
         'product_id',
-        'capacity',
-        'price',
+        'attribute_type',
+        'attribute_detail',
+        'attribute_price',
     ];
 
     public function product()

@@ -274,7 +274,7 @@
                     @foreach ($products as $product)
                     <div class="col-6 col-md-3  mb-5">
                         <div class="products">
-                            <img src="{{ asset('storage/uploads/' . $product->thumbnail) }}" class="img-fluid" alt="{{ $product->title }}" style="height: 130px">
+                            <img src="{{ asset('storage/uploads/' . $product->thumbnail) }}" class="img-fluid" alt="{{ $product->title }}" style="height: 220px">
                             <h6>{{ $product->category->title }}</h6>
                             <h4>{{ $product->title }}</h4>
                             <p class="price">RS {{ $product->price }}</p>

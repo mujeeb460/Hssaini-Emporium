@@ -142,19 +142,63 @@ public function store(Request $request)
     }
 }
 
-    if ($request->has('storage_capacity') && count($request->storage_capacity) > 0) {
+//     if ($request->has('storage_capacity') && count($request->storage_capacity) > 0) 
+//     {
 
-    foreach ($request->storage_capacity as $key => $capacity) {
-        // Ensure corresponding price exists for each capacity
-        if (isset($request->capacity_prices[$key])) {
+//     foreach ($request->storage_capacity as $key => $capacity) 
+//     {
+//         // Ensure corresponding price exists for each capacity
+//         if (isset($request->capacity_prices[$key])) 
+//         {
+//             ProductStorageCapacity::create([
+//                 'product_id' => $product->id,
+//                 'capacity' => $capacity,
+//                 'price' => $request->capacity_prices[$key],
+//             ]);
+//         }
+//     }
+// }
+
+
+if ($request->has('attribute_type') && !empty($request->attribute_type)) 
+{
+    foreach ($request->attribute_detail as $key => $detail) 
+    {
+        // Ensure corresponding price exists for each detail
+        if (isset($request->attribute_price[$key])) 
+        {
             ProductStorageCapacity::create([
                 'product_id' => $product->id,
-                'capacity' => $capacity,
-                'price' => $request->capacity_prices[$key],
+                'attribute_type' => $request->attribute_type, // Single string value
+                'attribute_detail' => $detail,
+                'attribute_price' => $request->attribute_price[$key],
             ]);
         }
     }
 }
+
+
+
+
+// if ($request->has('attribute_type')) {
+//     // Convert to array if it's a string
+//     $attributeTypes = is_array($request->attribute_type) ? $request->attribute_type : [$request->attribute_type];
+//     $attributeDetails = is_array($request->attribute_detail) ? $request->attribute_detail : [$request->attribute_detail];
+//     $attributePrices = is_array($request->attribute_price) ? $request->attribute_price : [$request->attribute_price];
+
+//     foreach ($attributeTypes as $key => $capacity) {
+//         // Ensure corresponding detail and price exist
+//         if (isset($attributeDetails[$key]) && isset($attributePrices[$key])) {
+//             ProductStorageCapacity::create([
+//                 'product_id' => $product->id,
+//                 'attribute_type' => $capacity,
+//                 'attribute_detail' => $attributeDetails[$key],
+//                 'attribute_price' => $attributePrices[$key],
+//             ]);
+//         }
+//     }
+// }
+
 
 
     return redirect()->route('admin.product.index')->with('success', 'Product created successfully!');

@@ -27,7 +27,7 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        @if ($product->colors)
+                        @if ($product->colors->isNotEmpty())
                             <div class="product_colors mt-4">
                                 <h5>Choose a Color:</h5>
                                 <div class="color-options d-flex gap-2">
@@ -41,14 +41,14 @@
                             </div>
                         @endif
 
-                        @if ($product->storageCapacities)
+                        @if ($product->storageCapacities->isNotEmpty())
                             <div class="product_capacity mt-4">
-                                <h5>Choose Capacity:</h5>
+                                <h5>Choose {{ $product->storageCapacities->first()->attribute_type }}:</h5>
                                 <div class="capacity-options d-flex gap-2">
                                     @foreach ($product->storageCapacities as $capacity)
                                         <label class="capacity-label">
                                             <input type="radio" name="selectCapacity" wire:click='changeCapacity({{ $capacity->id }})' value="{{ $capacity->capacity }}" hidden>
-                                            <span class="capacity-name">{{ $capacity->capacity }}</span>
+                                            <span class="capacity-name">{{ $capacity->attribute_detail }}</span>
                                         </label>
                                     @endforeach
                                 </div>
