@@ -174,6 +174,14 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
 }
 
+.hero__categories ul {
+    display: none; /* Hide by default */
+}
+
+.hero__categories.active ul {
+    display: block; /* Show when active */
+}
+
 </style>
 </head>
 
@@ -273,10 +281,10 @@
                 <div class="row featured__filter">
                     @foreach ($products as $product)
                     <div class="col-6 col-md-3  mb-5">
-                        <div class="products">
-                            <img src="{{ asset('storage/uploads/' . $product->thumbnail) }}" class="img-fluid" alt="{{ $product->title }}" style="height: 220px">
-                            <h6>{{ $product->category->title }}</h6>
-                            <h4>{{ $product->title }}</h4>
+                        <div class="products" style="height: 430px;">
+                            <img src="{{ asset('storage/uploads/' . $product->thumbnail) }}" class="img-fluid" alt="{{ $product->title }}" style="height: 220px; margin-bottom: 10px;">
+                            <h6 style="font-weight: bold;">{{ $product->category->title }}</h6>
+                            <h5>{{ $product->title }}</h5>
                             <p class="price">RS {{ $product->price }}</p>
                             @if($product->mrp)
                                 <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
@@ -373,6 +381,12 @@
                 hideAfter: 3e3,
                 stack: 1
             })
+
+             $(document).ready(function(){
+        $(".hero__categories__all").click(function(){
+            $(".hero__categories").toggleClass("active");
+        });
+    });
         </script>
     @endif
 

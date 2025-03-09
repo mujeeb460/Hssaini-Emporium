@@ -47,7 +47,7 @@
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <strong>Title:</strong>
-                                    {!! Form::text('title', null, ['placeholder' => 'Title','class' => 'form-control']) !!}
+                                    {!! Form::text('title', null, ['placeholder' => 'Title','class' => 'form-control', 'required' => 'required']) !!}
                                 </div>
                             </div>
 
@@ -55,7 +55,7 @@
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <strong>Price:</strong>
-                                    {!! Form::number('price', null, ['placeholder' => 'Price','class' => 'form-control']) !!}
+                                    {!! Form::number('price', null, ['placeholder' => 'Price','class' => 'form-control', 'required' => 'required']) !!}
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <strong>Stock:</strong>
-                                    {!! Form::number('stock', null, ['placeholder' => 'Stock','class' => 'form-control']) !!}
+                                    {!! Form::number('stock', null, ['placeholder' => 'Stock','class' => 'form-control', 'required' => 'required']) !!}
                                 </div>
                             </div>
 
@@ -99,7 +99,7 @@
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <strong>Status:</strong>
-                                    {!! Form::Select('status',['1'=>'Active','0'=>'Deactive'],null, ['placeholder' => 'Select','class' => 'form-control']) !!}
+                                    {!! Form::Select('status',['1'=>'Active','0'=>'Deactive'],null, ['placeholder' => 'Select','class' => 'form-control', 'required' => 'required']) !!}
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-4">
                             <div class="form-group">
                                 <strong>Description:</strong>
-                                {!! Form::textarea('description', null, ['placeholder' => 'Description','class' => 'form-control editor']) !!}
+                                {!! Form::textarea('description', null, ['placeholder' => 'Description','class' => 'form-control editor', 'required' => 'required']) !!}
                             </div>
                         </div>
 
