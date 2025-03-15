@@ -60,9 +60,7 @@
                                       class="rounded-circle img-fluid" style="width: 150px;">
                                     @endif
 
-                                    <h5 class="my-3">{{$user->first_name}}</h5>
-                                    <p class="text-muted mb-1">{{$user->last_name}}</p>
-                                    <p class="text-muted mb-4">{{$user->address}}</p>
+                                    <h5 class="my-3">{{$user->first_name}} <br/> {{$user->last_name}}</h5>
                                     <div class="d-flex justify-content-center mb-2">
                                       
 

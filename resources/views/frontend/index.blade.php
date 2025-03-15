@@ -182,6 +182,10 @@
     display: block; /* Show when active */
 }
 
+.detail_color a {
+    color: white;
+}
+
 </style>
 </head>
 
@@ -232,37 +236,37 @@
     <div class="content pt-4">
     <div class="container">
         <div class="row masonry-style" data-masonry='{"percentPosition": false }'>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3 detail_color">
                 <a href="{{ Route('shop', ['category',4,'kitchen-accessories']) }}">
                     <div class="detail h-600" style="background-image: url({{ asset('frontend/joy/images/banner-1.jpg') }});">
-                        <h5>INTRODUCING luxury</h5>
-                        <h2>Luminous Lighting</h2>
+                        <h5 style="color: white;">INTRODUCING luxury</h5>
+                        <h2 style="color: white;">Luminous Lighting</h2>
                     </div>
                 </a>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3 detail_color">
                 <a href="{{ Route('shop') }}">
                     <div class="detail h-500" style="background-image: url({{ asset('frontend/joy/images/banner-2.jpg') }});">
-                        <h6>Curious Brands</h6>
-                        <h3>Brands You'll Love</h3>
+                        <h6 style="color: white;">Curious Brands</h6>
+                        <h3 style="color: white;">Brands You'll Love</h3>
                     </div>
                 </a>
             </div>
         </div>
         <div class="row masonry-style" data-masonry='{"percentPosition": false }'>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3 detail_color">
                 <a href="{{ Route('shop', ['category',4,'kitchen-accessories']) }}">
                     <div class="detail h-600" style="background-image: url({{ asset('frontend/joy/images/banner-3.jpg') }});">
-                        <h5>INTRODUCING luxury</h5>
-                        <h2>Luminous Lighting</h2>
+                        <h5 style="color: white;">INTRODUCING luxury</h5>
+                        <h2 style="color: white;">Luminous Lighting</h2>
                     </div>
                 </a>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3 detail_color">
                 <a href="{{ Route('shop') }}">
                     <div class="detail h-500" style="background-image: url({{ asset('frontend/joy/images/banner-4.jpg') }});">
-                        <h6>Curious Brands</h6>
-                        <h3>Brands You'll Love</h3>
+                        <h6 style="color: white;">Curious Brands</h6>
+                        <h3 style="color: white;">Brands You'll Love</h3>
                     </div>
                 </a>
             </div>
@@ -274,7 +278,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <h2>Brands</h2>
+                            <h2>Products</h2>
                         </div>
                     </div>
                 </div>
@@ -313,16 +317,16 @@
                             <div class="featured__item__pic set-bg"
                                 data-setbg="{{ asset('storage/uploads/' . $product->thumbnail) }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="{{ Route('addcart', [$product->slug]) }}"><i class="fa fa-heart"></i></a>
+                                    <!-- <li><a href="{{ Route('addcart', [$product->slug]) }}"><i class="fa fa-heart"></i></a>
                                     </li>
                                     <li><a href="{{ Route('addcart', [$product->slug]) }}"><i
-                                                class="fa fa-retweet"></i></a></li>
+                                                class="fa fa-retweet"></i></a></li> -->
                                     <li><a href="{{ Route('addcart', [$product->slug]) }}"><i
                                                 class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">
-                                <h6><a href="#">{{ $product->title }}</a></h6>
+                                <h6><a href="{{ Route('addcart', [$product->slug]) }}">{{ $product->title }}</a></h6>
                                 <h5>RS {{ $product->price }}</h5>
                                 @if($product->mrp)
                                     <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>

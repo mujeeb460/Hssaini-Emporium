@@ -58,11 +58,13 @@
                     <div class="col-lg-6 col-md-6">
                         <input type="password" name="password_confirmation" placeholder="Confirmation password">
                     </div>
-                    <div class="col-lg-12 text-center">
-                        <button type="submit" class="btn btn-outline-dark">REGISTER</button>
-                        <div class="nav-item">
-                            <a class="btn btn-outline-dark mt-2" href="{{ route('login') }}">Login</a>
-                        </div>
+                    
+
+                    <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
+                        <button type="submit" class="btn btn-dark btn-block">Register</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3 mt-2">
+                        <a href="{{ route('login') }}" class="btn btn-outline-dark btn-block">Already have an account? login</a>
                     </div>
                 </div>
             </form>

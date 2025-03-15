@@ -24,41 +24,43 @@
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item">
-                            <h4>Categories</h4>
-                            <ul class="categories-list">
-                                <li><a wire:click="$set('selectedType', null)" href="javascript:void(0)">All</a></li>
-                                @foreach ($categories as $category)
-                                    <li>
-                                        <a wire:click="setFilter('category', {{ $category->id }})" href="javascript:void(0)">
-                                            {{ $category->title }}
-                                        </a>
+                        <h4>Categories</h4>
+                        <ul class="categories-list">
+                            <li><a wire:click="$set('selectedType', null)" href="javascript:void(0)">All</a></li>
+                            @foreach ($categories as $category)
+                                <li class="category-item">
+                                    <a wire:click="setFilter('category', {{ $category->id }})" href="javascript:void(0)" class="category-toggle">
+                                        {{ $category->title }}
+                                    </a>
 
-                                        @if($category->subCategories)
-                                        <ul class="subcategories-list">
-                                            @foreach ($category->subCategories as $subcategory)
-                                            <li>
-                                                <a wire:click="setFilter('subCategory', {{ $subcategory->id }})" href="javascript:void(0)">
-                                                    {{ $subcategory->title }}
-                                                </a>
+                                    @if($category->subCategories)
+                                    <ul class="subcategories-list" style="display: none;">
+                                        @foreach ($category->subCategories as $subcategory)
+                                        <li class="subcategory-item">
+                                            <a wire:click="setFilter('subCategory', {{ $subcategory->id }})" href="javascript:void(0)" class="subcategory-toggle">
+                                                {{ $subcategory->title }}
+                                            </a>
 
-                                                @if($subcategory->childCategories)
-                                                <ul class="childcategories-list">
-                                                    @foreach ($subcategory->childCategories as $childcategory)
-                                                    <li>
-                                                        <a wire:click="setFilter('childCategory', {{ $childcategory->id }})" href="javascript:void(0)">
+                                            @if($subcategory->childCategories)
+                                            <ul class="childcategories-list" style="display: none;">
+                                                @foreach ($subcategory->childCategories as $childcategory)
+                                                <li>
+                                                    <a wire:click="setFilter('childCategory', {{ $childcategory->id }})" href="javascript:void(0)">
                                                         {{ $childcategory->title }}
-                                                        </a>
-                                                    @endforeach
-                                                </ul>
-                                                @endif
+                                                    </a>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                            @endif
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
 
-                                            @endforeach
-                                        </ul>
-                                        @endif 
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
                         <div class="sidebar__item" wire:ignore>
                             <h4>Price</h4>
                             <div class="slider-container">
@@ -106,16 +108,16 @@
                                     <div class="product__item__pic">
                                         <img src="{{ asset('storage/uploads/' . $product->thumbnail) }}" alt="{{ $product->title }}" class="product-image">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="{{ route('product',$product->slug) }}">
+                                           <!--  <li><a href="{{ route('product',$product->slug) }}">
                                                 <i class="fa fa-heart"></i></a></li>
                                             <li><a href="{{ route('product',$product->slug) }}">
-                                                <i class="fa fa-retweet"></i></a></li>
+                                                <i class="fa fa-retweet"></i></a></li> -->
                                             <li><a href="{{ route('product',$product->slug) }}">
                                                 <i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6><a href="#">{{ $product->title }}</a></h6>
+                                        <h6><a href="{{ route('product',$product->slug) }}">{{ $product->title }}</a></h6>
                                         <h5>RS {{ $product->price }}</h5>
                                         @if($product->mrp)
                                             <h6 style="vertical-align: middle; text-decoration: line-through">RS {{ $product->mrp }}</h6>
@@ -170,6 +172,20 @@
     // Add event listeners
     minRange.addEventListener('input', updateRange);
     maxRange.addEventListener('input', updateRange);
+
+    $(document).ready(function() {
+    $(".category-toggle").click(function(e) {
+        e.preventDefault();
+        $(this).siblings(".subcategories-list").slideToggle();
+    });
+
+    $(".subcategory-toggle").click(function(e) {
+        e.preventDefault();
+        $(this).siblings(".childcategories-list").slideToggle();
+    });
+});
+
+
   </script>
 
 <style>
@@ -189,7 +205,7 @@
     .range-progress {
       position: absolute;
       height: 5px;
-      background-color: #0d6efd;
+      background-color: #7ead39;
       top: 50%;
       transform: translateY(-50%);
     }
@@ -205,7 +221,7 @@
       pointer-events: auto;
       width: 16px;
       height: 16px;
-      background-color: #0d6efd;
+      background-color: #7ead39;
       border: none;
       border-radius: 50%;
       -webkit-appearance: none;
@@ -216,7 +232,7 @@
       pointer-events: auto;
       width: 16px;
       height: 16px;
-      background-color: #0d6efd;
+      background-color: #7ead39;
       border: none;
       border-radius: 50%;
       cursor: pointer;

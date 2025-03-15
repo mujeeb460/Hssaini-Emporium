@@ -43,13 +43,19 @@
                     <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
                         <input type="password" name="password" placeholder="Your password" required>
                     </div>
-                    <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3 text-center">
-                            <a href="{{ url('/login/google') }}" class="btn btn-outline-dark mr-3"><img src="{{ asset('images/google-icon.svg') }}" alt=""> GOOGLE</a>
-                            <button type="submit" class="btn btn-outline-dark mr-3">LOGIN</button>
-                            <a href="{{ url('/login/facebook') }}" class="btn btn-outline-dark"><img src="{{ asset('images/facebook.svg') }}" alt=""> FACEBOOK</a>
-                        <div class="nav-item">
-                            <a href="{{ route('register') }}" class="btn btn-outline-dark mt-2 mr-2">Register</a>
-                        </div>
+                    <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
+                        <button type="submit" class="btn btn-dark btn-block">LOGIN</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3 mt-2">
+                        <a href="{{ route('register') }}" class="btn btn-outline-dark btn-block">Don't have an account? Register</a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3 text-center mt-3">
+                        <a href="{{ url('/login/google') }}" class="btn btn-outline-dark btn-block">
+                            <img src="{{ asset('images/google-icon.svg') }}" alt=""> GOOGLE
+                        </a>
+                        <a href="{{ url('/login/facebook') }}" class="btn btn-outline-dark btn-block mt-2">
+                            <img src="{{ asset('images/facebook.svg') }}" alt=""> FACEBOOK
+                        </a>
                     </div>
                 </div>
             </form>
