@@ -49,7 +49,8 @@ class OrderController extends Controller
             "payment_method" => "required"
         ]);
 
-        $user_id = auth()->id ?? 0;
+
+        $user_id = Auth::user()->id ?? 0;
 
         $carts = Cart::where('user_id', $user_id)->get();
 

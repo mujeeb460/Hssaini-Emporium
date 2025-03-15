@@ -15,7 +15,7 @@ class UserController extends Controller
             return redirect()->route('login');
         }
 
-        return $user = Auth::user();
+        $user = Auth::user();
         $orders = Order::with('orderDetails')->where('user_id', auth()->id())->get();
         return view('frontend.myorder', compact('orders','user'));
     }
