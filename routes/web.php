@@ -68,6 +68,8 @@ Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFaceb
 
 Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 
+Route::post('/subscribe_newsletter', [FrontendDashboardController::class, 'subscribe_newsletter'])->name('subscribe_newsletter');
+
 
 
 
@@ -121,8 +123,5 @@ Route::group(['middleware' => ['role:Customer'], 'prefix' => 'customer', 'as' =>
     Route::put('/cancel_order/{id}', [FrontendOrderController::class, 'cancel_order'])->name('cancel_order');
 
     Route::get('/CancelOrders', [FrontendOrderController::class, 'get_cancel_order'])->name('CancelOrders');
-
-
-
 
 });

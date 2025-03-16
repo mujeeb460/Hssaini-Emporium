@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Mail;
 
 class DashboardController extends Controller
 {
@@ -81,8 +83,37 @@ class DashboardController extends Controller
 
         return view('frontend.shop', compact('products', 'categories', 'letestProducts', 'saleProducts', 'data'));
     }
+
     public function contact()
     {
         return view('frontend.contact');
+    }
+
+
+    public function subscribe_newsletter(Request $request)
+    {
+        $data = array(
+            'name' => 'Test',
+            'address' => 'Test',
+            'email' => $request->email,
+            'password' => "Test123",
+            'msg' => "Hello test",
+        );
+        
+        // Mail::send('admin.mail.clinicregister', $data, function($message) use ($data){
+        //     $message->to($data['email']);
+        //     $message->subject(' Welcome! to elab-care App :: Clinic Register');
+        //     $message->from('Elab-Pathology@elab-care.com');
+        //   });
+
+        Mail::raw("Welcome {$data['name']}! Your account has been registered successfully.\n\nMessage: {$data['msg']}", function ($message) use ($data) {
+        $message->to($data['email'])
+                ->subject('Welcome to Hussainin Emporium!')
+                ->from('_mainaccount@hussainiemporium.com', 'Hussainin Emporium');
+    });
+
+
+        return "successfully send";
+
     }
 }

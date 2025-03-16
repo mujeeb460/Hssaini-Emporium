@@ -29,8 +29,9 @@
                 <div class="footer__widget">
                     <h6>Join Our Newsletter Now</h6>
                     <p>Get E-mail updates about our latest shop and special offers.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Enter your mail">
+                    <form action="{{ route('subscribe_newsletter') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" placeholder="Enter your mail" name="email">
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
                 </div>

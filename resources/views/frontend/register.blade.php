@@ -34,7 +34,7 @@
                     <x-jet-validation-errors class="mb-4 warning" />
                 </div>
             </div>
-            <form action="{{ route('register') }}" method="post">
+            <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
