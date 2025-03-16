@@ -112,8 +112,13 @@ class DashboardController extends Controller
                     ->from('info@hussainiemporium.com', 'Hussainin Emporium');
         });
 
+        //session()->flash('congratulations', 'Congratulations on your successful registration!');
 
-        return "successfully send";
+
+        //return redirect()->back()->with(['success'=> "Thanks for subscribe our newsletter"]);
+
+        return redirect()->back()->with('show_popup', true);
+
 
     }
 }
