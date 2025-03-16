@@ -100,22 +100,13 @@ class DashboardController extends Controller
             'msg' => "Hello test",
         );
         
-        // Mail::send('admin.mail.clinicregister', $data, function($message) use ($data){
-        //     $message->to($data['email']);
-        //     $message->subject(' Welcome! to elab-care App :: Clinic Register');
-        //     $message->from('Elab-Pathology@elab-care.com');
-        //   });
 
-        Mail::raw('Test Email from Laravel', function ($message) {
-            $message->to('mujeeb.rahujo123@gmail.com')
-                    ->subject('SMTP Test')
+        Mail::raw('Thanks for subscribe our Newsletter', function ($message) {
+            $message->to($request->email)
+                    ->subject('Subscribe Newsletter')
                     ->from('info@hussainiemporium.com', 'Hussainin Emporium');
         });
 
-        //session()->flash('congratulations', 'Congratulations on your successful registration!');
-
-
-        //return redirect()->back()->with(['success'=> "Thanks for subscribe our newsletter"]);
 
         return redirect()->back()->with('show_popup', true);
 
