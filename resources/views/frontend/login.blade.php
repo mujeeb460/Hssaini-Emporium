@@ -43,6 +43,11 @@
                     <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
                         <input type="password" name="password" placeholder="Your password" required>
                     </div>
+
+                    <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
+                        <a href=""> Forgot Password </a>
+                    </div>
+
                     <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
                         <button type="submit" class="btn btn-dark btn-block">LOGIN</button>
                     </div>
