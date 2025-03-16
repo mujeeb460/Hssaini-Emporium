@@ -47,14 +47,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Name<span class="text-danger">*</span></label>
-                                                    <input type="text" name="first_name" parsley-trigger="change" required
+                                                    <input type="text" name="first_name" parsley-trigger="change" value="{{old('first_name')}}" required
                                                         placeholder="Enter Name" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Email<span class="text-danger">*</span></label>
-                                                    <input type="email" name="email" parsley-trigger="change" required
+                                                    <input type="email" name="email" parsley-trigger="change" value="{{old('email')}}" required
                                                         placeholder="Enter Email" class="form-control">
                                                 </div>
                                             </div>
@@ -64,14 +64,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Mobile No<span class="text-danger">*</span></label>
-                                                    <input type="text" name="mobile" parsley-trigger="change" required
+                                                    <input type="text" name="mobile" parsley-trigger="change" value="{{old('mobile')}}" required
                                                         placeholder="Enter Mobile No" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Address<span class="text-danger">*</span></label>
-                                                    <input type="text" name="address" parsley-trigger="change" required
+                                                    <input type="text" name="address" parsley-trigger="change" value="{{old('address')}}" required
                                                         placeholder="Enter Address" class="form-control">
                                                 </div>
                                             </div>
