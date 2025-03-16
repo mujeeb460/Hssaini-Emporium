@@ -103,11 +103,12 @@ class DashboardController extends Controller
         $to = $request->email;
         
         //mail sender
-        Mail::raw('Thanks for subscribe our Newsletter', function ($message) {
+        Mail::raw('Thanks for subscribing to our Newsletter', function ($message) use ($to) { 
             $message->to($to)
                     ->subject('Subscribe Newsletter')
-                    ->from('info@hussainiemporium.com', 'Hussainin Emporium');
+                    ->from('info@hussainiemporium.com', 'Hussaini Emporium');
         });
+
 
 
         return redirect()->back()->with('show_popup', true);
