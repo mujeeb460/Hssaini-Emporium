@@ -390,6 +390,12 @@
                         </li>
 
                         @can('user-access')
+                        <li>
+                            <a href="{{ Route('admin.inventory.index') }}" wire:loading.attr="disabled">
+                                <i class="fe-airplay"></i>
+                                <span>Inventory</span>
+                            </a>
+                        </li>
                         <li class="menu-item">
                             <a href="javascript:void(0);" class="menu-link">
                                 <i class="fa fa-users"></i>
@@ -408,12 +414,7 @@
                                 @endcan
                             </ul>
                         </li>
-                        <li>
-                            <a href="{{ Route('admin.inventory.index') }}" wire:loading.attr="disabled">
-                                <i class="fe-airplay"></i>
-                                <span>Inventory</span>
-                            </a>
-                        </li>
+                        
                         @endcan
                     </ul>
                 </div>

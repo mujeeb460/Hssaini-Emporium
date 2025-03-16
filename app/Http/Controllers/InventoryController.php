@@ -19,14 +19,6 @@ class InventoryController extends Controller
     {
         $products = Product::with(['orderDetail'])->get();
 
-        foreach ($products as $product) {
-            $available_stock = $product->stock;
-            $solid_stock = $product->orderDetail()->count();
-            $total_stock = $available_stock + $solid_stock;
-
-            $product->update(['total_stock' => $total_stock ]);
-        }
-
         return view('admin.inventory.index', compact('products'));
     }
 
