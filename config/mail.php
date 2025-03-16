@@ -36,13 +36,13 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
+            'host' => 'mail.hussainiemporium.com',
+            'port' => 465,
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'username' => '_mainaccount@hussainiemporium.com',
+            'password' => 'Hittler@123',
+            'timeout' => 120,
+            'auth_mode' => null,
         ],
 
         'ses' => [
