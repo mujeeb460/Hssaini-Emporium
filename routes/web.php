@@ -70,6 +70,10 @@ Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCa
 
 Route::post('/subscribe_newsletter', [FrontendDashboardController::class, 'subscribe_newsletter'])->name('subscribe_newsletter');
 
+Route::get('/forgot_password', [FrontendUserController::class, 'forgot_password'])->name('forgot_password');
+
+Route::post('/check_forgot', [FrontendUserController::class, 'check_forgot'])->name('check_forgot');
+
 
 
 
