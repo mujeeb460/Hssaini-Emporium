@@ -106,11 +106,11 @@ class DashboardController extends Controller
         //     $message->from('Elab-Pathology@elab-care.com');
         //   });
 
-        Mail::raw("Welcome {$data['name']}! Your account has been registered successfully.\n\nMessage: {$data['msg']}", function ($message) use ($data) {
-        $message->to($data['email'])
-                ->subject('Welcome to Hussainin Emporium!')
-                ->from('_mainaccount@hussainiemporium.com', 'Hussainin Emporium');
-    });
+        Mail::raw('Test Email from Laravel', function ($message) {
+            $message->to('mujeeb.rahujo123@gmail.com')
+                    ->subject('SMTP Test')
+                    ->from('_mainaccount@hussainiemporium.com', 'Hussainin Emporium');
+        });
 
 
         return "successfully send";
