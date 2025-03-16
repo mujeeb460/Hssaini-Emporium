@@ -99,10 +99,12 @@ class DashboardController extends Controller
             'password' => "Test123",
             'msg' => "Hello test",
         );
+
+        $to = $request->email;
         
         //mail sender
         Mail::raw('Thanks for subscribe our Newsletter', function ($message) {
-            $message->to($request->email)
+            $message->to($to)
                     ->subject('Subscribe Newsletter')
                     ->from('info@hussainiemporium.com', 'Hussainin Emporium');
         });
