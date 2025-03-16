@@ -408,6 +408,12 @@
                                 @endcan
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{ Route('admin.inventory.index') }}" wire:loading.attr="disabled">
+                                <i class="fe-airplay"></i>
+                                <span>Inventory</span>
+                            </a>
+                        </li>
                         @endcan
                     </ul>
                 </div>

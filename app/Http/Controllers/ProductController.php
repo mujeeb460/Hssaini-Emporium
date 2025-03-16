@@ -120,6 +120,7 @@ public function store(Request $request)
         'mrp' => $request->mrp,
         'thumbnail' => $thumbnailFileName,
         'images' => json_encode($images),
+        'total_stock' => $request->stock,
         'stock' => $request->stock,
         'status' => $request->status,
     ]);

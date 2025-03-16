@@ -21,6 +21,7 @@ use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerControll
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\Frontend\MyAddressController as FrontendMyAddressController;
 use App\Http\Controllers\Frontend\StripePaymentController;
+use App\Http\Controllers\InventoryController;
 
 
 
@@ -116,6 +117,7 @@ Route::group(['middleware' => ['role:Admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionsController::class);
+    Route::resource('inventory', InventoryController::class);
 });
 
 

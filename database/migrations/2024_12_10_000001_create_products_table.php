@@ -24,6 +24,7 @@ return new class extends Migration
         $table->decimal('mrp', 10, 2)->nullable();
         $table->string('thumbnail');
         $table->json('images');
+        $table->integer('total_stock');
         $table->integer('stock');
         $table->boolean('status')->default(1); // 1 = Active, 0 = Deactive
         $table->timestamps();

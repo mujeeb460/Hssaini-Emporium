@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Shopping Cart</h2>
+                        <h2>My Profile</h2>
                         <div class="breadcrumb__option">
                             <a href="/">Home</a>
                             <span>My Orders</span>

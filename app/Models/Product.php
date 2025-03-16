@@ -21,6 +21,7 @@ class Product extends Model
         'mrp',
         'thumbnail',
         'images',
+        'total_stock',
         'stock',
         'status',
     ];
@@ -69,6 +70,11 @@ class Product extends Model
     public function childCategory()
     {
         return $this->belongsTo(Childcategory::class);
+    }
+
+    public function orderDetail()
+    {
+        return $this->hasMany(OrderDetail::class);
     }
 
 

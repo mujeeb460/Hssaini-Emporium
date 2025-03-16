@@ -86,6 +86,10 @@ class OrderController extends Controller
                 $orderDetail->product_id = $cart->product_id;
                 $orderDetail->order_id = $order->id;
                 $orderDetail->save();
+
+                $products = Product::find($cart->product_id);
+                $products->update(['stock'=>$products->stock-$cart->qty]);
+
             }
 
             Cart::where('user_id', $user_id)->delete();
