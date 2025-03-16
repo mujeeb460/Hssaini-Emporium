@@ -109,7 +109,7 @@ class DashboardController extends Controller
         Mail::raw('Test Email from Laravel', function ($message) {
             $message->to('mujeeb.rahujo123@gmail.com')
                     ->subject('SMTP Test')
-                    ->from('_mainaccount@hussainiemporium.com', 'Hussainin Emporium');
+                    ->from('info@hussainiemporium.com', 'Hussainin Emporium');
         });
 
 
