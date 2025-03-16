@@ -9,6 +9,7 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 
 class OrderController extends Controller
@@ -218,6 +219,54 @@ class OrderController extends Controller
         return view('frontend.order_complete',compact('user'));
 
        
+    }
+
+
+    public function cart_add(Request $request)
+    {
+
+        $user_id = auth()->id() ?? 0;
+        $product_id = $request->product_id;
+        $qty = $request->qty;
+        $size = $request->size;
+        $color = $request->color;
+
+        $product = Product::find($product_id);
+
+        if (!$product) {
+            return response()->json(['status' => 'error', 'message' => 'Product not found.']);
+        }
+
+        if ($qty > $product->stock) {
+            return response()->json(['status' => 'error', 'message' => 'Quantity exceeds stock available.']);
+        }
+
+        $cart = Cart::where('product_id', $product_id)
+                    ->where('user_id', $user_id)
+                    ->firstOrNew();
+
+        $cart->qty = $qty;
+        $cart->size = $size;
+        $cart->color = $color;
+        $cart->product_id = $product_id;
+        $cart->user_id = $user_id;
+        $cart->save();
+
+        // Count total cart items for the user
+        $cartCount = Cart::where('user_id', $user_id)->count();
+        $totalPrice = Cart::where('user_id', $user_id)
+                ->with('product')
+                ->get()
+                ->sum(function ($item) {
+                    return $item->product->price * $item->qty;
+                });
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Product added to cart!',
+            'cart_count' => $cartCount,
+            'total_price' => $totalPrice
+        ]);
     }
 
 

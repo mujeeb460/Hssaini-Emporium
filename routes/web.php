@@ -74,6 +74,8 @@ Route::get('/forgot_password', [FrontendUserController::class, 'forgot_password'
 
 Route::post('/check_forgot', [FrontendUserController::class, 'check_forgot'])->name('check_forgot');
 
+Route::post('/cart_add', [FrontendOrderController::class, 'cart_add'])->name('cart_add');
+
 
 
 

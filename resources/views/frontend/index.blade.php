@@ -321,8 +321,14 @@
                                     </li>
                                     <li><a href="{{ Route('addcart', [$product->slug]) }}"><i
                                                 class="fa fa-retweet"></i></a></li> -->
-                                    <li><a href="{{ Route('addcart', [$product->slug]) }}"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a class="cart_add" href="javascript:void(0);"
+                                            data-id="{{ $product->id }}" 
+                                            data-size="{{ $product->size }}" 
+                                            data-color="{{ $product->color }}"
+                                            data-qty="1">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">
@@ -429,6 +435,62 @@
         })
     </script>
     <?php endif ?>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".cart_add").click(function (e) {
+                e.preventDefault();
+
+                var product_id = $(this).data("id");
+                var size = $(this).data("size");
+                var color = $(this).data("color");
+                var qty = $(this).data("qty");
+
+                $.ajax({
+                    url: "{{ route('cart_add') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        product_id: product_id,
+                        size: size,
+                        color: color,
+                        qty: qty
+                    },
+                    success: function (response) {
+                        // console.log(response);
+                        if (response.status === "success") {
+                            $('.header__cart').find('a').find('span').html(response.cart_count);
+
+                            $('.header__cart').find('.header__cart__price').find('span').html(response.total_price);
+                            
+                            $.toast({
+                                heading: "Well done!",
+                                text: response.message,
+                                position: "top-right",
+                                loaderBg: "#5ba035",
+                                icon: "success",
+                                hideAfter: 3e3,
+                                stack: 1
+                            })
+                        } else {
+                            $.toast({
+                                heading: "Oh snap!",
+                                text: response.message,
+                                position: "top-right",
+                                loaderBg: "#bf441d",
+                                icon: "error",
+                                hideAfter: 3e3,
+                                stack: 1
+                            })
+                        }
+                    },
+                    error: function () {
+                        alert("Something went wrong! Please try again.");
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 
