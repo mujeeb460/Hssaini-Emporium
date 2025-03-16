@@ -100,7 +100,7 @@ class DashboardController extends Controller
             'msg' => "Hello test",
         );
         
-
+        //mail sender
         Mail::raw('Thanks for subscribe our Newsletter', function ($message) {
             $message->to($request->email)
                     ->subject('Subscribe Newsletter')
