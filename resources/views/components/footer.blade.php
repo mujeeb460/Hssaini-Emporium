@@ -134,6 +134,24 @@
     </div>
 </div>
 
+<!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        @if(session('show_popup'))
+            Swal.fire({
+                title: "Thank You!",
+                text: "Thanks for subscribing to our newsletter.",
+                icon: "success",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "OK"
+            });
+        @endif
+    });
+</script>
+
+
 <script src="{{ asset('chat/script.js') }}"></script>
 
 <script>
