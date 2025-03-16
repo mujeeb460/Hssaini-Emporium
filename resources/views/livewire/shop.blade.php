@@ -103,7 +103,7 @@
                     </div>
                     <div class="row featured__filter">
                         @foreach ($products as $product)
-                            <div class="col-6 col-md-3  mb-5">
+                            <div class="col-6 col-md-4  mb-5">
                         <div class="products" style="height: 430px;">
                             <img src="{{ asset('storage/uploads/' . $product->thumbnail) }}" class="img-fluid" alt="{{ $product->title }}" style="height: 220px; margin-bottom: 10px;">
                             <h6 style="font-weight: bold;">{{ $product->category->title }}</h6>
