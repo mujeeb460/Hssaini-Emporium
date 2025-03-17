@@ -147,6 +147,7 @@
                                                     @for ($i = 1; $i <= 5; $i++)
                                                         <span class="{{ $i <= $review->rating ? 'text-warning' : 'text-muted' }}">★</span>
                                                     @endfor
+                                                    <span class="rating-text">({{ $review->rating }}/5)</span>
                                                 </div>
                                                 <p>{{ $review->comment }}</p>
                                                 
