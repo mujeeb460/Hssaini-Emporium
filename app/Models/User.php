@@ -66,4 +66,10 @@ class User extends Authenticatable
     protected $appends = [
         
     ];
+
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

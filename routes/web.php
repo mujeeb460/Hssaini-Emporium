@@ -4,12 +4,14 @@ use Laravel\Jetstream\Rules\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\ChildCategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController as FrontendContactController;
@@ -85,6 +87,8 @@ Route::get('/product/{slug?}', [FrontendDashboardController::class, 'singleProdu
 
 Route::post('/searchProduct', [FrontendDashboardController::class, 'searchProduct'])->name('searchProduct');
 
+Route::get('/search-suggestions', [FrontendDashboardController::class, 'searchSuggestions'])->name('search.suggestions');
+
 Route::get('/shop/{type?}/{id?}', function ($type = null, $id = null, $title = null) {
     return view('frontend.shop', ['type' => $type, 'id' => $id, 'title' => $title ]);
 })->name('shop');
@@ -99,9 +103,14 @@ Route::get('/myorder', [FrontendUserController::class, 'myorder'])->name('myorde
 Route::get('/orderComplete', [FrontendOrderController::class, 'orderComplete'])->name('orderComplete');
 
 
+
+
+
+
 // Admin Panel
 Route::group(['middleware' => ['role:Admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::view('dashboard', 'dashboard');
+    //Route::view('dashboard', 'dashboard');
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('category', CategoryController::class);
     Route::resource('sub_category', SubCategoryController::class);
     Route::resource('child_category', ChildCategoryController::class);
@@ -127,6 +136,7 @@ Route::group(['middleware' => ['role:Customer'], 'prefix' => 'customer', 'as' =>
     Route::get('/setting', [FrontendCustomerController::class, 'change_password'])->name('change_password');
     Route::put('/setting', [FrontendCustomerController::class, 'update_password'])->name('update_password');
     Route::resource('myaddress', FrontendMyAddressController::class);
+    Route::resource('review', ReviewController::class);
 
     Route::put('/cancel_order/{id}', [FrontendOrderController::class, 'cancel_order'])->name('cancel_order');
 

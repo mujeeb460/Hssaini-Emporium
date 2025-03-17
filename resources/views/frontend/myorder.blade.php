@@ -52,11 +52,12 @@
                                                 <p>Order date: RS {{ $order->created_at }}</p>
                                             </div>
 
-                                            @if($order->status !== 'Canceled')
+                                            @if($order->status == 'Pending')
                                             <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3" style="text-align: right;">
                                                 <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancel</button>                                            
                                             </div>
                                             @endif
+
                                         </div>
 
                                        <!--  Alert Modal -->

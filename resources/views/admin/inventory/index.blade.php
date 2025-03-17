@@ -39,7 +39,7 @@
                                         <th>Price</th>
                                         <th>Total Stock</th>
                                         <th>Available Stock</th>
-                                        <th>Solid</th>
+                                        <th>Sold</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

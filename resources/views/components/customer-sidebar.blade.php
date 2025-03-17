@@ -94,6 +94,7 @@
     <ul class="menu-hover-fill flex flex-col items-start leading-none text-2xl uppercase space-y-4">
   	  <li><a href="{{ route('customer.profile.index' )}}" data-text="My Profile">My Profile</a></li>
   	  <li><a href="{{ route('myorder') }}" data-text="My Orders">My Orders</a></li>
+      <li><a href="{{ route('customer.review.index') }}" data-text="My Reviews">My Reviews</a></li>
       <li><a href="{{ route('customer.CancelOrders') }}" data-text="Cancel Orders">Cancel Orders</a></li>
   	  <li><a href="{{ route('customer.myaddress.index') }}" data-text="Address Book">Address Book</a></li>
       <li><a href="{{ route('customer.change_password') }}" data-text="Change Password">Change Password</a></li>

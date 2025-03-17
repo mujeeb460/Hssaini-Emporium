@@ -92,13 +92,6 @@ class DashboardController extends Controller
 
     public function subscribe_newsletter(Request $request)
     {
-        $data = array(
-            'name' => 'Test',
-            'address' => 'Test',
-            'email' => $request->email,
-            'password' => "Test123",
-            'msg' => "Hello test",
-        );
 
         $to = $request->email;
         
@@ -113,6 +106,18 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('show_popup', true);
 
+    }
+
+
+    public function searchSuggestions(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('title', 'LIKE', "%{$query}%")
+                            ->take(5) // Limit to 5 suggestions
+                            ->get();
+
+        return response()->json($products);
     }
 
 

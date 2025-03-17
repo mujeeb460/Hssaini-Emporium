@@ -245,7 +245,6 @@ if ($request->has('attribute_type') && !empty($request->attribute_type))
             'category_id' => 'required',
             'price' => 'required',
             'mrp' => 'required',
-            'stock' => 'required',
             'status' => 'required',
             'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
@@ -274,7 +273,6 @@ if ($request->has('attribute_type') && !empty($request->attribute_type))
         $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->mrp = $request->mrp;
-        $product->stock = $request->stock;
         $product->status = $request->status;
         $product->update();
 

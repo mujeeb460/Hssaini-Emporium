@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use Mail;
+
 
 
 class OrderController extends Controller
@@ -94,6 +96,18 @@ class OrderController extends Controller
 
             Cart::where('user_id', $user_id)->delete();
 
+            $to = Auth::user()->email;
+            
+            if($to)
+            {
+                Mail::raw('Thank you for Shopping Your Order ID is '. $order->id, function ($message) use ($to) { 
+                    $message->to($to)
+                            ->subject('Order Success')
+                            ->from('info@hussainiemporium.com', 'Hussaini Emporium');
+                });
+            }
+
+           
             return redirect('orderComplete')->with('success', 'Order Placed Successfully!')->with('orderID', $order->id);
             
             //return redirect('myorder')->with('success', 'Order Placed Successfully!');

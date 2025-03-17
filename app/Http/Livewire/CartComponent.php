@@ -3,6 +3,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Review;
 use Livewire\Component;
 use App\Models\ProductColor;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,8 @@ class CartComponent extends Component
     public $product;
     public $relatedProducts;
 
+    public $reviews;
+
     public $color,$capacity, $selectCapacity, $selectColor, $isCart=false, $user_id;
 
     protected $listeners = ['updateCart'];
@@ -32,6 +35,10 @@ class CartComponent extends Component
         $this->product = $product;
         $this->relatedProducts = $relatedProducts;
         $this->productStock = $product->stock;
+
+        $this->reviews = Review::where('product_id', $this->product->id)
+                           ->with('user') // Load user info if needed
+                           ->get();
 
         $this->user_id = Auth::user()->id ?? 0;
 
